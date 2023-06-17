@@ -260,9 +260,6 @@ public class intADM extends javax.swing.JFrame {
             //Teste Select All
             ArrayList<Usuario> SelecAll = usuarioDAO.SelecAll();
             
-            for for (Usuario SelecAll1 : SelecAll) {
-                    System.out.println(usuario.getUsuario());
-                }
             
         } catch (SQLException ex) {
             Logger.getLogger(intADM.class.getName()).log(Level.SEVERE, null, ex);
