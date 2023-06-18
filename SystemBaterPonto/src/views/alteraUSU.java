@@ -5,6 +5,16 @@
  */
 package views;
 
+import cadastro.Usuario;
+import dao.UsuarioDAO;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 /**
  *
  * @author César
@@ -29,16 +39,16 @@ public class alteraUSU extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtUsuar1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        passNewSen2 = new javax.swing.JPasswordField();
+        txtNewUsuario = new javax.swing.JTextField();
+        txtNovaSenha = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jPasswordField3 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -52,7 +62,7 @@ public class alteraUSU extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
 
-        jLabel1.setText("Nome:");
+        jLabel1.setText("Usuario antigo :");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Altera a Senha");
@@ -61,52 +71,54 @@ public class alteraUSU extends javax.swing.JFrame {
 
         jLabel4.setText("Senha Nova :");
 
-        jLabel5.setText("Confirma a Senha :");
+        jLabel5.setText("Novo Usuario :");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1)
-                            .addComponent(jLabel3)
-                            .addComponent(jPasswordField1)
-                            .addComponent(jPasswordField2)
-                            .addComponent(jPasswordField3, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(jLabel2)))
+                    .addComponent(jLabel5)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtNovaSenha)
+                        .addComponent(jLabel1)
+                        .addComponent(txtUsuar1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4)
+                        .addComponent(txtNewUsuario)
+                        .addComponent(passNewSen2, javax.swing.GroupLayout.Alignment.TRAILING)))
                 .addContainerGap(143, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtUsuar1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(2, 2, 2)
+                .addComponent(passNewSen2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(155, 155, 155))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNewUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)
+                        .addGap(16, 16, 16)
+                        .addComponent(txtNovaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         getContentPane().add(jPanel1);
@@ -117,10 +129,14 @@ public class alteraUSU extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(130, 350, 105, 23);
 
-        jButton2.setBackground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("Salvar");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(550, 350, 92, 23);
+        jButton3.setText("Salvar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(540, 350, 100, 30);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
         jLabel6.setText("img");
@@ -164,6 +180,41 @@ public class alteraUSU extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        String usuarioAntigo = txtUsuar1.getText();
+        String senhaAnti = passNewSen2.getText();
+        String usuarioNovo = txtNewUsuario.getText();
+        String senhaNova = txtNovaSenha.getText();
+
+        try {
+            // TODO add your handling code here:
+            Connection conexao = new dao.Conexao().getConnection();
+            UsuarioDAO usuarioDAO = new UsuarioDAO(conexao);
+
+            // Verificar se o usuário e senha antigos existem no banco de dados
+            Usuario buscarUsuario = usuarioDAO.buscarUsuario(usuarioAntigo);
+
+            if (buscarUsuario != null) {
+                // Atualizar os dados do usuário existente com os novos valores
+                buscarUsuario.setUsuario(usuarioNovo);
+                buscarUsuario.setSenha(senhaNova);
+
+                // Atualizar o usuário no banco de dados
+                usuarioDAO.update(buscarUsuario);
+
+                // Informar ao usuário que os dados foram atualizados com sucesso
+                JOptionPane.showMessageDialog(this, "Dados atualizados com sucesso!");
+            } else {
+                // Informar ao usuário que o usuário e senha antigos não foram encontrados
+                JOptionPane.showMessageDialog(this, "Usuário e senha não encontrados!");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(alteraUSU.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -199,9 +250,26 @@ public class alteraUSU extends javax.swing.JFrame {
         });
     }
 
+    public JPasswordField getPassNewSen2() {
+        return passNewSen2;
+    }
+
+    public void setPassNewSen2(JPasswordField passNewSen2) {
+        this.passNewSen2 = passNewSen2;
+    }
+
+    public JTextField getTxtUsuar1() {
+        return txtUsuar1;
+    }
+
+    public void setTxtUsuar1(JTextField txtUsuar1) {
+        this.txtUsuar1 = txtUsuar1;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -211,11 +279,11 @@ public class alteraUSU extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JPasswordField jPasswordField3;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField passNewSen2;
+    private javax.swing.JTextField txtNewUsuario;
+    private javax.swing.JTextField txtNovaSenha;
+    private javax.swing.JTextField txtUsuar1;
     // End of variables declaration//GEN-END:variables
 }

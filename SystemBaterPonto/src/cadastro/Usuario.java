@@ -21,6 +21,30 @@ public class Usuario {
     private String numero;
     private String cep;
 
+    public Usuario(int id, String nome, String usuarios, String senha, String cpf, String rg, String cargo, String dataNascimento, String IdentificadoUnico, String telefone, String estado, String cidade, String bairro, String rua, String referencia, String complemento, String numero) {
+        this.id = id;
+        this.nome = nome;
+        this.usuarios = usuarios;
+        this.senha = senha;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.cargo = cargo;
+        this.dataNascimento = dataNascimento;
+        this.IdentificadoUnico = IdentificadoUnico;
+        this.telefone = telefone;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.bairro = bairro;
+        this.rua = rua;
+        this.referencia = referencia;
+        this.complemento = complemento;
+        this.numero = numero;
+    }
+
+    
+    
+    
+    
     public Usuario(String nome, String usuarios, String senha, String cpf, String rg, String cargo, String dataNascimento, String IdentificadoUnico, String telefone, String estado, String cidade, String bairro, String rua, String referencia, String complemento, String numero, String cep) {
         this.nome = nome;
         this.usuarios = usuarios;

@@ -19,34 +19,49 @@ public class UsuarioDAO {
     public UsuarioDAO(Connection connection) {
         this.connection = connection;
     }
-    
+
     /*public Usuario insert(Usuario usuario) throws SQLException {
 
-        String sql = "INSERT INTO usuario(usuarios,senha)   VALUES (? ,?); ";
-        PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+     String sql = "INSERT INTO usuario(usuarios,senha)   VALUES (? ,?); ";
+     PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-        statement.setString(1, usuario.getUsuarios());
-        statement.setString(2, usuario.getSenha());
-        statement.execute();
+     statement.setString(1, usuario.getUsuarios());
+     statement.setString(2, usuario.getSenha());
+     statement.execute();
         
-        ResultSet resultSet = statement.getGeneratedKeys();
+     ResultSet resultSet = statement.getGeneratedKeys();
         
-        if (resultSet.next()){
-            int id = resultSet.getInt("id");
-            usuario.setId(id);
-        }
-        return usuario;
+     if (resultSet.next()){
+     int id = resultSet.getInt("id");
+     usuario.setId(id);
+     }
+     return usuario;
         
-    }*/
-
+     }*/
     public void insert(Usuario usuario) throws SQLException {
-    
-    String sql = "INSERT INTO usuario (nome, usuarios, senha, cpf, rg, cargo, dataNascimento, IndentificadoUnico, telefone, estado, cidade, bairro, rua, referencia, complemento, numero, cep) VALUES ('"+usuario.getNome()+"', '"+usuario.getUsuarios()+"','"+usuario.getSenha()+"', '"+usuario.getCpf()+"', '"+usuario.getRg()+"', '"+usuario.getCargo()+"', '"+usuario.getDataNascimento()+"', '"+usuario.getIdentificadoUnico()+"', '"+usuario.getTelefone()+"', '"+usuario.getEstado()+"', '"+usuario.getCidade()+"', '"+usuario.getBairro()+"', '"+usuario.getRua()+"', '"+usuario.getReferencia()+"', '"+usuario.getComplemento()+"', '"+usuario.getNumero()+"', '"+usuario.getCep()+"');" ;
-    PreparedStatement statement = connection.prepareStatement(sql);
-    
-    statement.execute();
-    connection.close();
-    
+
+        String sql = "INSERT INTO usuario (nome, usuarios, senha, cpf, rg, cargo, dataNascimento, IndentificadoUnico, telefone, estado, cidade, bairro, rua, referencia, complemento, numero, cep) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement statement = connection.prepareStatement(sql);
+
+        statement.setString(1, usuario.getNome());
+        statement.setString(2, usuario.getUsuarios());
+        statement.setString(3, usuario.getSenha());
+        statement.setString(4, usuario.getCpf());
+        statement.setString(5, usuario.getRg());
+        statement.setString(6, usuario.getCargo());
+        statement.setString(7, usuario.getDataNascimento());
+        statement.setString(8, usuario.getIdentificadoUnico());
+        statement.setString(9, usuario.getTelefone());
+        statement.setString(10, usuario.getEstado());
+        statement.setString(11, usuario.getCidade());
+        statement.setString(12, usuario.getBairro());
+        statement.setString(13, usuario.getRua());
+        statement.setString(14, usuario.getReferencia());
+        statement.setString(15, usuario.getComplemento());
+        statement.setString(16, usuario.getNumero());
+        statement.setString(17, usuario.getCep());
+
+        statement.execute();
     }
 
     public boolean existeNoBancoEsseUsuarioSenha(Usuario usuario) throws SQLException {
@@ -78,13 +93,13 @@ public class UsuarioDAO {
 
     public void update(Usuario usuario) throws SQLException {
 
-        String sql = "UPDATE  usuario SET usuarios = ?, senha = ? WHERE id = ? ";
-        PreparedStatement statement = connection.prepareStatement(sql);
+        String sql = "UPDATE usuario SET senha = ? WHERE usuarios = ?";
 
-        statement.setString(1, usuario.getUsuarios());
-        statement.setString(2, usuario.getSenha());
-        statement.setInt(3, usuario.getId());
-        statement.execute();
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, usuario.getSenha());
+            statement.setString(2, usuario.getUsuarios());
+            statement.executeUpdate();
+        }
     }
 
     public void insertOrUpdate(Usuario usuario) throws SQLException {
@@ -96,11 +111,12 @@ public class UsuarioDAO {
     }
 
     public void delete(Usuario usuario) throws SQLException {
-        String sql = "DELETE FROM usuario WHERE id = ? ";
-        PreparedStatement statement = connection.prepareStatement(sql);
+        String sql = "DELETE FROM usuario WHERE id = ?";
 
-        statement.setInt(1, usuario.getId());
-        statement.execute();
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, usuario.getId());
+            statement.execute();
+        }
     }
 
     public ArrayList<Usuario> SelecAll() throws SQLException {
@@ -111,10 +127,9 @@ public class UsuarioDAO {
     }
 
     private ArrayList<Usuario> pesquisa(PreparedStatement statement) throws SQLException {
-        ArrayList<Usuario> usuarios = pesquisa(statement);
+        ArrayList<Usuario> usuarios = new ArrayList<>();
 
-        statement.execute();
-        ResultSet resultSet = statement.getResultSet();
+        ResultSet resultSet = statement.executeQuery();
 
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
@@ -125,7 +140,7 @@ public class UsuarioDAO {
             String rg = resultSet.getString("rg");
             String cargo = resultSet.getString("cargo");
             String dataNascimento = resultSet.getString("dataNascimento");
-            String IdentificadoUnico = resultSet.getString("IdentificadoUnico");
+            String identificadoUnico = resultSet.getString("IndentificadoUnico");
             String telefone = resultSet.getString("telefone");
             String estado = resultSet.getString("estado");
             String cidade = resultSet.getString("cidade");
@@ -133,25 +148,60 @@ public class UsuarioDAO {
             String rua = resultSet.getString("rua");
             String referencia = resultSet.getString("referencia");
             String complemento = resultSet.getString("complemento");
-            String numero = resultSet.getString("numeros");
+            String numero = resultSet.getString("numero");
             String cep = resultSet.getString("cep");
 
-            Usuario usuariosComDadosBanco = new Usuario(nome, usuario, senha, cpf, rg, cargo, dataNascimento, IdentificadoUnico, telefone, estado, cidade, bairro, rua, referencia, complemento, numero, cep);
-            //esse metod usado aqui em baixo e so um teste
-            Usuario usuariosNoBancoDeDados = new Usuario(id);
+            Usuario usuarioDoBanco = new Usuario(id, nome, usuario, senha, cpf, rg, cargo, dataNascimento, identificadoUnico, telefone, estado, cidade, bairro, rua, referencia, complemento, numero);
 
-            usuarios.add(usuariosComDadosBanco);
-            usuarios.add(usuariosNoBancoDeDados);
+            usuarios.add(usuarioDoBanco);
         }
+
         return usuarios;
     }
 
     public Usuario selectPorId(Usuario usuario) throws SQLException {
-        String sql = "SELECT * FROM usuario  WHERE id = ? ;";
+        String sql = "SELECT * FROM usuario WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, usuario.getId());
 
-        return pesquisa(statement).get(0);
+        ArrayList<Usuario> usuarios = pesquisa(statement);
+        if (!usuarios.isEmpty()) {
+            return usuarios.get(0);
+        } else {
+            return null; // ou qualquer ação apropriada para lidar com o caso em que o usuário não é encontrado
+        }
+    }
+
+    public Usuario buscarUsuario(String usuario) throws SQLException {
+        String sql = "SELECT * FROM usuario WHERE usuarios = ?";
+    PreparedStatement statement = connection.prepareStatement(sql);
+    statement.setString(1, usuario);
+
+    ResultSet resultSet = statement.executeQuery();
+
+    if (resultSet.next()) {
+        int id = resultSet.getInt("id");
+        String nome = resultSet.getString("nome");
+        String senha = resultSet.getString("senha");
+        String cpf = resultSet.getString("cpf");
+        String rg = resultSet.getString("rg");
+        String cargo = resultSet.getString("cargo");
+        String dataNascimento = resultSet.getString("dataNascimento");
+        String IdentificadoUnico = resultSet.getString("IndentificadoUnico");
+        String telefone = resultSet.getString("telefone");
+        String estado = resultSet.getString("estado");
+        String cidade = resultSet.getString("cidade");
+        String bairro = resultSet.getString("bairro");
+        String rua = resultSet.getString("rua");
+        String referencia = resultSet.getString("referencia");
+        String complemento = resultSet.getString("complemento");
+        String numero = resultSet.getString("numero");
+        String cep = resultSet.getString("cep");
+
+        return new Usuario(id, nome, usuario, senha, cpf, rg, cargo, dataNascimento, IdentificadoUnico, telefone, estado, cidade, bairro, rua, referencia, complemento, numero);
+    }
+
+    return null;
     }
 
 }

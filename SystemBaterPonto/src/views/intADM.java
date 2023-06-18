@@ -177,6 +177,11 @@ public class intADM extends javax.swing.JFrame {
         jMenu1.add(jRadioButtonMenuItem1);
 
         jMenuItem1.setText("Alteração de Cadastro");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Informações");
@@ -252,6 +257,11 @@ public class intADM extends javax.swing.JFrame {
     private void tabelaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tabelaAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_tabelaAncestorAdded
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        new alteraADM().setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
