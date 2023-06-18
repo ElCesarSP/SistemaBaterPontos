@@ -1,4 +1,4 @@
-    package controller;
+package controller;
 
 import cadastro.Usuario;
 import dao.Conexao;
@@ -7,7 +7,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import views.cadastro;
 
 public class FormCadastroController {
@@ -19,7 +22,6 @@ public class FormCadastroController {
     }
 
     public void salvaUsuario() {
-        
 
         String nome = views.getTxtNome().getText();
         String usuarios = views.getTxtUsu().getText();
@@ -45,11 +47,40 @@ public class FormCadastroController {
             Connection conexao = new Conexao().getConnection();
             UsuarioDAO usuarioDAO = new UsuarioDAO(conexao);
             usuarioDAO.insert(usuario);
-            JOptionPane.showMessageDialog(null, "            Dados do Usuário Salvo Com Sucessor!", "Salvos...", JOptionPane.PLAIN_MESSAGE);
+
+            // Limpar os campos de texto
+            limparCampos(views.getTxtNome(), views.getTxtUsu(), views.getPassSenh(), views.getForCpf(), views.getForRg(),
+                    views.getTxtCargo(), views.getForData(), views.getTxtId(), views.getTxtTele(), views.getTxtEsta(),
+                    views.getTxtCidade(), views.getTxtBairro(), views.getTxtRua(), views.getTxtRefe(), views.getTxtComple(),
+                    views.getTxtNum(), views.getForCep());
+
+            JOptionPane.showMessageDialog(null, "Dados do Usuário Salvo Com Sucesso!", "Salvos...", JOptionPane.PLAIN_MESSAGE);
 
         } catch (SQLException ex) {
             Logger.getLogger(cadastro.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
+    private void limparCampos(JTextField txtNome, JTextField txtUsu, JPasswordField passSenh, JFormattedTextField forCpf, JFormattedTextField forRg, JTextField txtCargo, JFormattedTextField forData, JTextField txtId, JTextField txtTele, JTextField txtEsta, JTextField txtCidade, JTextField txtBairro, JTextField txtRua, JTextField txtRefe, JTextField txtComple, JTextField txtNum, JFormattedTextField forCep) {
+
+        txtNome.setText("");
+        txtUsu.setText("");
+        passSenh.setText("");
+        forCpf.setText("");
+        forRg.setText("");
+        txtCargo.setText("");
+        forData.setText("");
+        txtId.setText("");
+        txtTele.setText("");
+        txtEsta.setText("");
+        txtCidade.setText("");
+        txtBairro.setText("");
+        txtRua.setText("");
+        txtRefe.setText("");
+        txtComple.setText("");
+        txtNum.setText("");
+        forCep.setText("");
+
+    }
 }

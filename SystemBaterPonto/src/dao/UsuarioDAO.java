@@ -102,6 +102,25 @@ public class UsuarioDAO {
         }
     }
 
+    public void updateUsuarios(Usuario usuario) throws SQLException {
+        String sql = "UPDATE usuario SET senha = ?, telefone = ?, cargo = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?, cep = ? WHERE id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+
+        statement.setString(1, usuario.getSenha());
+        statement.setString(2, usuario.getTelefone());
+        statement.setString(3, usuario.getCargo());
+        statement.setString(4, usuario.getEstado());
+        statement.setString(5, usuario.getCidade());
+        statement.setString(6, usuario.getBairro());
+        statement.setString(7, usuario.getRua());
+        statement.setString(8, usuario.getNumero());
+        statement.setString(9, usuario.getComplemento());
+        statement.setString(10, usuario.getCep());
+        statement.setInt(11, usuario.getId());
+
+        statement.executeUpdate();
+    }
+
     public void insertOrUpdate(Usuario usuario) throws SQLException {
         if (usuario.getId() > 0) {
             update(usuario);
@@ -115,6 +134,15 @@ public class UsuarioDAO {
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, usuario.getId());
+            statement.execute();
+        }
+    }
+
+    public void deleteByUsuario(String usuario) throws SQLException {
+        String sql = "DELETE FROM usuario WHERE usuarios = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, usuario);
             statement.execute();
         }
     }
@@ -174,34 +202,36 @@ public class UsuarioDAO {
 
     public Usuario buscarUsuario(String usuario) throws SQLException {
         String sql = "SELECT * FROM usuario WHERE usuarios = ?";
-    PreparedStatement statement = connection.prepareStatement(sql);
-    statement.setString(1, usuario);
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, usuario);
 
-    ResultSet resultSet = statement.executeQuery();
+        ResultSet resultSet = statement.executeQuery();
 
-    if (resultSet.next()) {
-        int id = resultSet.getInt("id");
-        String nome = resultSet.getString("nome");
-        String senha = resultSet.getString("senha");
-        String cpf = resultSet.getString("cpf");
-        String rg = resultSet.getString("rg");
-        String cargo = resultSet.getString("cargo");
-        String dataNascimento = resultSet.getString("dataNascimento");
-        String IdentificadoUnico = resultSet.getString("IndentificadoUnico");
-        String telefone = resultSet.getString("telefone");
-        String estado = resultSet.getString("estado");
-        String cidade = resultSet.getString("cidade");
-        String bairro = resultSet.getString("bairro");
-        String rua = resultSet.getString("rua");
-        String referencia = resultSet.getString("referencia");
-        String complemento = resultSet.getString("complemento");
-        String numero = resultSet.getString("numero");
-        String cep = resultSet.getString("cep");
+        if (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String nome = resultSet.getString("nome");
+            String senha = resultSet.getString("senha");
+            String cpf = resultSet.getString("cpf");
+            String rg = resultSet.getString("rg");
+            String cargo = resultSet.getString("cargo");
+            String dataNascimento = resultSet.getString("dataNascimento");
+            String IdentificadoUnico = resultSet.getString("IndentificadoUnico");
+            String telefone = resultSet.getString("telefone");
+            String estado = resultSet.getString("estado");
+            String cidade = resultSet.getString("cidade");
+            String bairro = resultSet.getString("bairro");
+            String rua = resultSet.getString("rua");
+            String referencia = resultSet.getString("referencia");
+            String complemento = resultSet.getString("complemento");
+            String numero = resultSet.getString("numero");
+            String cep = resultSet.getString("cep");
 
-        return new Usuario(id, nome, usuario, senha, cpf, rg, cargo, dataNascimento, IdentificadoUnico, telefone, estado, cidade, bairro, rua, referencia, complemento, numero);
+            return new Usuario(id, nome, usuario, senha, cpf, rg, cargo, dataNascimento, IdentificadoUnico, telefone, estado, cidade, bairro, rua, referencia, complemento, numero);
+        }
+
+        return null;
     }
-
-    return null;
-    }
+    
+    
 
 }

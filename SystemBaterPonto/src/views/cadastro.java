@@ -19,6 +19,7 @@ import javax.swing.JTextField;
  * @author César
  */
 public class cadastro extends javax.swing.JFrame {
+
     private final FormCadastroController controller;
 
     /**
@@ -52,7 +53,7 @@ public class cadastro extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        PassSenh = new javax.swing.JPasswordField();
+        passSenh = new javax.swing.JPasswordField();
         txtTele = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -73,7 +74,7 @@ public class cadastro extends javax.swing.JFrame {
         txtCidade = new javax.swing.JTextField();
         txtRua = new javax.swing.JTextField();
         txtComple = new javax.swing.JTextField();
-        ForCep = new javax.swing.JFormattedTextField();
+        forCpe = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
@@ -115,7 +116,7 @@ public class cadastro extends javax.swing.JFrame {
 
         jLabel7.setText("Senha :");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
-        jPanel1.add(PassSenh, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 140, 30));
+        jPanel1.add(passSenh, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 140, 30));
         jPanel1.add(txtTele, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 110, 30));
 
         jLabel8.setText("ID :");
@@ -166,26 +167,27 @@ public class cadastro extends javax.swing.JFrame {
         jPanel2.add(txtCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 160, 32));
         jPanel2.add(txtRua, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 108, 210, 31));
         jPanel2.add(txtComple, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 171, 170, 32));
-        jPanel2.add(ForCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 170, 30));
+        jPanel2.add(forCpe, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 170, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 370, 282));
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 90, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 90, 30));
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Salvar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(657, 350, 110, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(667, 350, 100, 30));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
         jLabel17.setText("Img");
@@ -223,6 +225,25 @@ public class cadastro extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        txtNome.setText("");
+        txtUsu.setText("");
+        passSenh.setText("");
+        ForCpf.setText("");
+        ForRg.setText("");
+        txtCargo.setText("");
+        ForData.setText("");
+        txtId.setText("");
+        txtTele.setText("");
+        txtEsta.setText("");
+        txtCidade.setText("");
+        txtBairro.setText("");
+        txtRua.setText("");
+        txtRefe.setText("");
+        txtComple.setText("");
+        txtNum.setText("");
+        forCpe.setText("");
+        JOptionPane.showMessageDialog(null, "O Cancelamento foi efetuado com Sucessor! ");
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
@@ -274,11 +295,11 @@ public class cadastro extends javax.swing.JFrame {
     }
 
     public JFormattedTextField getForCep() {
-        return ForCep;
+        return forCpe;
     }
 
     public void setForCep(JFormattedTextField ForCep) {
-        this.ForCep = ForCep;
+        this.forCpe = ForCep;
     }
 
     public JFormattedTextField getForCpf() {
@@ -402,21 +423,19 @@ public class cadastro extends javax.swing.JFrame {
     }
 
     public JPasswordField getPassSenh() {
-        return PassSenh;
+        return passSenh;
     }
 
     public void setPassSenh(JPasswordField PassSenh) {
-        this.PassSenh = PassSenh;
+        this.passSenh = PassSenh;
     }
 
-    
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField ForCep;
     private javax.swing.JFormattedTextField ForCpf;
     private javax.swing.JFormattedTextField ForData;
     private javax.swing.JFormattedTextField ForRg;
-    private javax.swing.JPasswordField PassSenh;
+    private javax.swing.JFormattedTextField forCpe;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -442,6 +461,7 @@ public class cadastro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
+    private javax.swing.JPasswordField passSenh;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCargo;
     private javax.swing.JTextField txtCidade;

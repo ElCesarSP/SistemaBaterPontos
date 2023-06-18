@@ -122,21 +122,23 @@ public class intuUsuario extends javax.swing.JFrame {
         jLabel3.setText("Identificador Único :");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 110, -1, -1));
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Início");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 79, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 79, 30));
 
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Termino");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 91, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 91, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -207,21 +209,23 @@ public class intuUsuario extends javax.swing.JFrame {
         txtSeg2.setText("0");
         jPanel1.add(txtSeg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 230, 30, 30));
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Início");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 80, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 80, 30));
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Termino");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(615, 270, 80, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(615, 270, 80, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 720, 330));
 

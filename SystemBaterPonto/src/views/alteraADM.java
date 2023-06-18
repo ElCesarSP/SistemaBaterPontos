@@ -5,6 +5,13 @@
  */
 package views;
 
+import cadastro.Usuario;
+import dao.UsuarioDAO;
+import java.sql.Connection;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author César
@@ -16,6 +23,7 @@ public class alteraADM extends javax.swing.JFrame {
      */
     public alteraADM() {
         initComponents();
+
     }
 
     /**
@@ -29,30 +37,30 @@ public class alteraADM extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtUsuar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtTele = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtCarg = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtCida = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtBairr = new javax.swing.JTextField();
+        txtRua = new javax.swing.JTextField();
+        txtNum = new javax.swing.JTextField();
+        txtComp = new javax.swing.JTextField();
+        txtRefe = new javax.swing.JTextField();
+        txtSenh = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        txtEsta = new javax.swing.JTextField();
+        txtCep = new javax.swing.JFormattedTextField();
+        jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -70,41 +78,30 @@ public class alteraADM extends javax.swing.JFrame {
         jLabel1.setText("Usuario :");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 22, -1, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtUsuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtUsuarActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 44, 230, 26));
+        jPanel1.add(txtUsuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 230, 30));
 
-        jLabel2.setText("Senha :");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 77, -1, -1));
-
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 99, 230, 25));
-        jPanel1.add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 153, 230, 25));
-
-        jLabel3.setText("Confirma Senha :");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 131, -1, -1));
+        jLabel2.setText("Altera Senha :");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, -1));
 
         jLabel4.setText("Telefone :");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 185, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 212, 230, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+        jPanel1.add(txtTele, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 230, 30));
 
         jLabel5.setText("Cargo :");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 230, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+        jPanel1.add(txtCarg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 230, 30));
 
         jLabel6.setText("Cidade :");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 22, -1, -1));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 260, 30));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
+        jPanel1.add(txtCida, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 130, 30));
 
         jLabel7.setText("Bairro :");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 77, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, -1, -1));
 
         jLabel8.setText("Rua :");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 131, -1, -1));
@@ -120,35 +117,45 @@ public class alteraADM extends javax.swing.JFrame {
 
         jLabel12.setText("Referência :");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, -1, -1));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 99, 260, 30));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 153, 260, 30));
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 212, 103, 30));
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 103, 30));
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(463, 212, 145, 30));
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 145, 30));
+        jPanel1.add(txtBairr, new org.netbeans.lib.awtextra.AbsoluteConstraints(482, 99, 120, 30));
+        jPanel1.add(txtRua, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 153, 260, 30));
+        jPanel1.add(txtNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 212, 103, 30));
+        jPanel1.add(txtComp, new org.netbeans.lib.awtextra.AbsoluteConstraints(463, 212, 145, 30));
+        jPanel1.add(txtRefe, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 145, 30));
+        jPanel1.add(txtSenh, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 230, 30));
+
+        jLabel14.setText("Estado :");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
+        jPanel1.add(txtEsta, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 260, 30));
+        jPanel1.add(txtCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(344, 270, 100, 30));
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(70, 30, 650, 323);
+        jPanel1.setBounds(70, 10, 650, 323);
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Cancelar");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(70, 360, 90, 23);
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Salvar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(630, 350, 90, 30);
 
-        jButton2.setBackground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("Salvar");
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(620, 360, 80, 23);
+        jButton2.setBounds(70, 350, 90, 30);
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
         jLabel13.setText("Img");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(-10, 0, 923, 500);
+        jLabel13.setBounds(0, 0, 923, 500);
 
         jMenu1.setText("Menu");
 
@@ -169,22 +176,95 @@ public class alteraADM extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void txtUsuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_txtUsuarActionPerformed
 
     private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
         // TODO add your handling code here
         this.dispose();
     }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String usuario = txtUsuar.getText();
+        String senha = txtSenh.getText();
+        String telefone = txtTele.getText();
+        String cargo = txtCarg.getText();
+        String estado = txtEsta.getText();
+        String cidade = txtCida.getText();
+        String bairro = txtBairr.getText();
+        String rua = txtRua.getText();
+        String numero = txtNum.getText();
+        String complemto = txtComp.getText();
+        String cep = txtCep.getText();
+
+        try {
+            Connection conexao = new dao.Conexao().getConnection();
+            UsuarioDAO usuarioDAO = new UsuarioDAO(conexao);
+
+            Usuario buscarUsuario = usuarioDAO.buscarUsuario(usuario);
+
+            if (buscarUsuario != null) {
+                // Atualizar os dados do usuário existente com os novos valores
+                buscarUsuario.setSenha(senha);
+                buscarUsuario.setTelefone(telefone);
+                buscarUsuario.setCargo(cargo);
+                buscarUsuario.setEstado(estado);
+                buscarUsuario.setCidade(cidade);
+                buscarUsuario.setBairro(bairro);
+                buscarUsuario.setRua(rua);
+                buscarUsuario.setNumero(numero);
+                buscarUsuario.setComplemento(complemto);
+                buscarUsuario.setCep(cep);
+
+                // Atualizar o usuário no banco de dados
+                usuarioDAO.updateUsuarios(buscarUsuario);
+                //Limpa os campos
+                txtUsuar.setText("");
+                txtSenh.setText("");
+                txtTele.setText("");
+                txtCarg.setText("");
+                txtEsta.setText("");
+                txtCida.setText("");
+                txtBairr.setText("");
+                txtRua.setText("");
+                txtNum.setText("");
+                txtComp.setText("");
+                txtCep.setText("");
+                txtRefe.setText("");
+
+                // Informar ao usuário que os dados foram atualizados com sucesso
+                JOptionPane.showMessageDialog(this, "Dados atualizados com sucesso!");
+            } else {
+                // Informar ao usuário que o usuário não foi encontrado
+                JOptionPane.showMessageDialog(this, "Usuário não encontrado!");
+            }
+        } catch (Exception e) {
+            // Lidar com exceções
+        }
+
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+
+        txtUsuar.setText("");
+        txtSenh.setText("");
+        txtTele.setText("");
+        txtCarg.setText("");
+        txtEsta.setText("");
+        txtCida.setText("");
+        txtBairr.setText("");
+        txtRua.setText("");
+        txtNum.setText("");
+        txtComp.setText("");
+        txtCep.setText("");
+        txtRefe.setText("");
+        JOptionPane.showMessageDialog(null, "O Cancelamento foi efetuado com Sucessor! ");
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,15 +302,15 @@ public class alteraADM extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -240,18 +320,19 @@ public class alteraADM extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txtBairr;
+    private javax.swing.JTextField txtCarg;
+    private javax.swing.JFormattedTextField txtCep;
+    private javax.swing.JTextField txtCida;
+    private javax.swing.JTextField txtComp;
+    private javax.swing.JTextField txtEsta;
+    private javax.swing.JTextField txtNum;
+    private javax.swing.JTextField txtRefe;
+    private javax.swing.JTextField txtRua;
+    private javax.swing.JTextField txtSenh;
+    private javax.swing.JTextField txtTele;
+    private javax.swing.JTextField txtUsuar;
     // End of variables declaration//GEN-END:variables
+
 }
