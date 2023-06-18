@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -46,7 +47,7 @@ public class intADM extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
         jToggleButton1 = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
         jToggleButton2 = new javax.swing.JToggleButton();
@@ -67,124 +68,102 @@ public class intADM extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Nome :");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 22, 47, 24));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 59, 257, 29));
 
         jLabel2.setText("ID :");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 95, -1, 23));
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 125, 257, 32));
 
         jLabel3.setText("Cargo :");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 164, -1, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 186, 257, 85));
+
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome ", "Horário de Início", "Horário de Termino", "Data de Acesso"
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
 
-        jToggleButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jToggleButton1.setText("Iniciar");
-
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Finalizar");
-
-        jToggleButton2.setText("Iniciar");
-
-        jButton2.setBackground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("Finalizar");
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tabela.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tabelaAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane2.setViewportView(tabela);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton1)
-                    .addComponent(jButton1)
-                    .addComponent(jToggleButton2)
-                    .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel2)
-                        .addComponent(jTextField2)
-                        .addComponent(jTextField1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(161, 161, 161))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 22, -1, -1));
+
+        jToggleButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jToggleButton1.setText("Iniciar");
+        jPanel2.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 78, -1));
+
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jButton1.setText("Finalizar");
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, -1, -1));
+
+        jToggleButton2.setText("Iniciar");
+        jPanel2.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 260, 78, -1));
+
+        jButton2.setBackground(new java.awt.Color(51, 51, 51));
+        jButton2.setText("Finalizar");
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 260, -1, -1));
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(46, 53, 713, 283);
+        jPanel2.setBounds(20, 50, 760, 310);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
         jLabel4.setText("img");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(-10, -10, 810, 430);
+        jLabel4.setBounds(0, 0, 810, 430);
 
         jMenu1.setText("Menu");
 
@@ -250,21 +229,29 @@ public class intADM extends javax.swing.JFrame {
             Connection conexa = new Conexao().getConnection();
             UsuarioDAO usuarioDAO = new UsuarioDAO(conexa);
             
-            //Teste Insert
-            Usuario usuarioInsert = new Usuario("testeusuarioInserido", "654321");
-            Usuario usuarioInserido = usuarioDAO.insert(usuarioInsert, rootPaneCheckingEnabled);
-            //Teste Select ID
-            Usuario usuarioSelecionado = usuarioDAO.selectPorId(usuarioInserido);
-            //Teste Delete 
-            usuarioDAO.delete(usuarioSelecionado);
-            //Teste Select All
-            ArrayList<Usuario> SelecAll = usuarioDAO.SelecAll();
+            //teste insert
+           /* Usuario usuarioInsert = new Usuario("TesteusuariosIsert", "654321");
+            Usuario usuarioInserido = usuarioDAO.insert(usuarioInsert);
+            //teste select id
+            Usuario UsuarioSelecionado = usuarioDAO.selectPorId(usuarioInserido);
             
+            //teste delete
+            usuarioDAO.delete(UsuarioSelecionado);
+            //teste select all*/
+            ArrayList<Usuario> usuarios = usuarioDAO.SelecAll();
+            
+            for (Usuario usuario : usuarios) {
+                System.out.println(usuario.getUsuarios());
+            }
             
         } catch (SQLException ex) {
             Logger.getLogger(intADM.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void tabelaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tabelaAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tabelaAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -301,6 +288,16 @@ public class intADM extends javax.swing.JFrame {
         });
     }
 
+    public static void preencherTabela() {
+        DefaultTableModel model = ( DefaultTableModel) tabela.getModel();
+        model.setNumRows(0);
+        
+        Object colunas [] = new Object[3];
+        
+        
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -320,11 +317,11 @@ public class intADM extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
+    public static javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }

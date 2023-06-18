@@ -84,7 +84,7 @@ public class longin extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (1).png"))); // NOI18N
         jLabel3.setText("Img");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(-20, -10, 830, 470);
+        jLabel3.setBounds(0, 0, 830, 470);
 
         jMenu1.setText("Menu");
 
@@ -105,18 +105,18 @@ public class longin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+      
         try {
-
- 
-
-            // TODO add your handling code here:
-            //Aqui e al ogica aplicada para acessar as tela de cada usuario
             controller.autenticar();
         } catch (SQLException ex) {
             Logger.getLogger(longin.class.getName()).log(Level.SEVERE, null, ex);
+            
+        } catch (CloneNotSupportedException ex) {
+            Logger.getLogger(longin.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
-
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

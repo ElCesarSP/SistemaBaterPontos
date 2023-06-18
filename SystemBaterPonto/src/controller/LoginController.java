@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import views.cadastro;
 import views.intADM;
+import views.intuUsuario;
 import views.longin;
 
 public class LoginController {
@@ -18,7 +19,10 @@ public class LoginController {
         this.views = views;
     }
 
-    public void autenticar() throws SQLException {
+    public void autenticar() throws SQLException, CloneNotSupportedException {
+
+        String Usuar = null;
+        String Senh = null;
 
         //Buscar o usuario da views
         String usuarios = views.getTxtUsu().getText();
@@ -33,13 +37,40 @@ public class LoginController {
         //Se existir direciona para o menu
 
         if (existe) {
-            cadastro telaDeCadastro = new cadastro();
-            new intADM().setVisible(true);
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Usuario o senha Invalidos" );
+            Usuar = usuarios;
+            Senh = senha;
         }
 
+        /*Aqui estou usando regras de negosio para poder somentes usuario do projeto poder realizar
+         Por padrão futuramento vamos modelar no banco de dados como seria somente usuarios
+         cadastrado que poder realizar a tela de catro e implementar mais novos cadastro de adm
+         */
+        if (usuarios.equals("admin") && senha.equals("admin")
+                || usuarios.equals("cesar") && senha.equals("cesar")
+                || usuarios.equals("rafael") && senha.equals("rafael")
+                || usuarios.equals("pedro") && senha.equals("pedro")
+                || usuarios.equals("esdras") && senha.equals("esdras")) {
+
+            cadastro telaDeCadastro = new cadastro();
+            new intADM().setVisible(true);
+
+        } else if (existe) {
+            intuUsuario telaDeUsuarioComun = new intuUsuario();
+            new intuUsuario().setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario o senha Invalidos");
+        }
+
+        /*
+         if (existe) {
+         cadastro telaDeCadastro = new cadastro();
+         new intADM().setVisible(true);
+         JOptionPane.showMessageDialog(null," Sejá Bem-Vindo ");
+            
+         }else{
+         JOptionPane.showMessageDialog(null, "Usuario o senha Invalidos" );
+         }*/
     }
 
 }

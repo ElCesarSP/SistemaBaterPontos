@@ -154,6 +154,11 @@ public class alteraADM extends javax.swing.JFrame {
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("Volta a pagína Inicial");
+        jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jRadioButtonMenuItem1);
 
         jMenuBar1.add(jMenu1);
@@ -175,6 +180,11 @@ public class alteraADM extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
+        // TODO add your handling code here
+        this.dispose();
+    }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

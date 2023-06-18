@@ -5,8 +5,11 @@
         <group>
             <file>file:/C:/Users/César/OneDrive/Documentos/Clone/SistemaBaterPontos/SystemBaterPonto/src/views/cadastro.java</file>
             <file>file:/C:/Users/César/OneDrive/Documentos/Clone/SistemaBaterPontos/SystemBaterPonto/src/views/intADM.java</file>
+            <file>file:/C:/Users/César/OneDrive/Documentos/Clone/SistemaBaterPontos/SystemBaterPonto/src/views/alteraUSU.java</file>
+            <file>file:/C:/Users/César/OneDrive/Documentos/Clone/SistemaBaterPontos/SystemBaterPonto/src/dao/UsuarioDAO.java</file>
             <file>file:/C:/Users/César/OneDrive/Documentos/Clone/SistemaBaterPontos/SystemBaterPonto/src/views/longin.java</file>
             <file>file:/C:/Users/César/OneDrive/Documentos/Clone/SistemaBaterPontos/SystemBaterPonto/src/Conexao/Connecter.java</file>
+            <file>file:/C:/Users/César/OneDrive/Documentos/Clone/SistemaBaterPontos/SystemBaterPonto/src/cadastro/Usuario.java</file>
             <file>file:/C:/Users/César/OneDrive/Documentos/Clone/SistemaBaterPontos/SystemBaterPonto/src/dao/Conexao.java</file>
         </group>
     </open-files>

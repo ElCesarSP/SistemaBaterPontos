@@ -49,6 +49,12 @@ public class Usuario {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+   
+
     //Busca somente a senha e usuario de acessor
     public Usuario(int id, String usuarios, String senha) {
         this.id = id;
