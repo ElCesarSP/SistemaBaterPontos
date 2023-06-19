@@ -6,11 +6,18 @@
 package views;
 
 import Horario.Horario;
+import Horario.RelogioTabela;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import static views.intADM.tabela;
-import views.teste.Horas;
-import views.teste.Minutos;
-import views.teste.Segundos;
 
 /**
  *
@@ -18,56 +25,60 @@ import views.teste.Segundos;
  */
 public class intuUsuario extends javax.swing.JFrame {
 
+    private DefaultTableModel model;
+    private JTable tabela;
+    private JButton iniciarButton;
+    private JButton terminarButton;
+    private RelogioTabela relogioTabela;
+
+    public void criarTabela() {
+        model = new DefaultTableModel();
+        model.addColumn("Início do 1º Turno");
+        model.addColumn("Horário de Início");
+        model.addColumn("Término do 1º Turno");
+        model.addColumn("Data de Início");
+
+        tabela = new JTable(model);
+
+        iniciarButton = new JButton("Iniciar");
+        iniciarButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                relogioTabela = new RelogioTabela(tabela);
+                relogioTabela.iniciarCronometro();
+
+                Object[] rowData = new Object[4];
+                rowData[0] = relogioTabela.getHorarioTermino();
+                rowData[1] = relogioTabela.getHorarioInicio();
+                rowData[2] = "";
+                rowData[3] = relogioTabela.getDataInicio();
+                model.addRow(rowData);
+            }
+        });
+
+        terminarButton = new JButton("Terminar");
+        terminarButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (relogioTabela != null) {
+                    relogioTabela.pararCronometro();
+
+                    int lastRow = model.getRowCount() - 1;
+                    LocalDateTime horarioTermino = relogioTabela.getHorarioTermino();
+                    model.setValueAt(horarioTermino, lastRow, 2);
+                }
+            }
+        });
+    }
+
     public static void close() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    Horas horas;
-    Minutos minutos;
-    Segundos segundos;
-
-    Thread tHor, tMin, tSeg;
-
     //
-    Hora2 hora2;
-    Minutos2 minutos2;
-    Segundos2 segundo2;
-
-    Thread tHor2, tMin2, tSeg2;
-
-    //
-    int clic1;
-    int clic2;
 
     /**
      * Creates new form intuUsuario
      */
     public intuUsuario() {
         initComponents();
-        //Horas
-        horas = new Horas();
-        tHor = new Thread(horas);
-        //Minutos
-        minutos = new Minutos();
-        tMin = new Thread(minutos);
-        //Segundos
-        segundos = new Segundos();
-        tSeg = new Thread(segundos);
-
-        //Horas 2
-        hora2 = new Hora2();
-        tHor2 = new Thread(hora2);
-        //Minutos2
-        minutos2 = new Minutos2();
-        tMin2 = new Thread(minutos2);
-        //Segundos2
-        segundo2 = new Segundos2();
-        tSeg2 = new Thread(segundo2);
-
-        //
-        clic1 = 0;
-        //
-        clic2 = 0;
 
     }
 
@@ -85,21 +96,12 @@ public class intuUsuario extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        txtHor1 = new javax.swing.JTextField();
-        txtMin1 = new javax.swing.JTextField();
-        txtHor2 = new javax.swing.JTextField();
-        txtMin2 = new javax.swing.JTextField();
-        txtSeg1 = new javax.swing.JTextField();
-        txtSeg2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -116,29 +118,17 @@ public class intuUsuario extends javax.swing.JFrame {
 
         jLabel1.setText("Nome :");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 47, -1, -1));
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 74, 221, 29));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 134, 221, 32));
 
         jLabel3.setText("Identificador Único :");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 110, -1, -1));
-
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Início");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 79, 30));
-
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Termino");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, 91, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -171,7 +161,10 @@ public class intuUsuario extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,46 +179,14 @@ public class intuUsuario extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 220, 30));
 
-        txtHor1.setText("0");
-        jPanel1.add(txtHor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 30, 30));
-
-        txtMin1.setText("0");
-        txtMin1.addActionListener(new java.awt.event.ActionListener() {
+        jButton6.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
+        jButton6.setText("Espediente");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMin1ActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(txtMin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 30, 30));
-
-        txtHor2.setText("0");
-        jPanel1.add(txtHor2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 30, 30));
-
-        txtMin2.setText("0");
-        jPanel1.add(txtMin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 230, 30, 30));
-
-        txtSeg1.setText("0");
-        jPanel1.add(txtSeg1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 30, 30));
-
-        txtSeg2.setText("0");
-        jPanel1.add(txtSeg2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 230, 30, 30));
-
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Início");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 80, 30));
-
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Termino");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(615, 270, 80, 30));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 210, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 720, 330));
 
@@ -265,163 +226,6 @@ public class intuUsuario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtMin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMin1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMin1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        if (!tHor.isAlive()) {
-            tHor.start();
-        }
-        if (!tMin.isAlive()) {
-            tMin.start();
-        }
-        if (!tSeg.isAlive()) {
-            tSeg.start();
-        }
-
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if (!tHor2.isAlive()) {
-            tHor2.start();
-        }
-        if (!tMin2.isAlive()) {
-            tMin2.start();
-        }
-        if (!tSeg2.isAlive()) {
-            tSeg2.start();
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        if (clic1 == 0) {
-            Object[] col;
-            col = new Object[3];
-            col[0] = "Volta";
-            col[1] = "Hora";
-            col[2] = "Duração Total";
-            Object[][] lin;
-            lin = new Object[1][3];
-            lin[0][0] = "1";
-            lin[0][1] = txtHor1.getText() + ":" + txtMin1.getText() + ":" + txtSeg1.getText();
-            lin[0][2] = txtHor1.getText() + ":" + txtMin1.getText() + ":" + txtSeg1.getText();
-            DefaultTableModel tm;
-            tm = new DefaultTableModel(lin, col);
-            jTable1.setModel(tm);
-            clic1 = 1;
-
-        } else {
-            //JOptionPane.showMessageDialog(this, "clicou");
-            DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
-            Object[] lin;
-            lin = new Object[3];
-            lin[0] = tm.getRowCount() + 1;
-            //lin[1]=txtMin.getText()+":"+txtSeg.getText()+":"+txtMil.getText();
-            lin[2] = txtHor1.getText() + ":" + txtMin1.getText() + ":" + txtSeg1.getText();
-            System.out.println("Somar");
-            int min = Integer.parseInt(txtHor1.getText());
-            int seg = Integer.parseInt(txtMin1.getText());
-            int mil = Integer.parseInt(txtSeg1.getText());
-
-            System.out.println(min + " " + seg + " " + mil);
-            Object tudo = jTable1.getModel().getValueAt(tm.getRowCount() - 1, 2);
-            System.out.println(tudo);
-            String minSegMil = (String) tudo;
-            String[] tem = minSegMil.split(":");
-            int min2 = Integer.parseInt(tem[0]);
-            int seg2 = Integer.parseInt(tem[1]);
-            int mil2 = Integer.parseInt(tem[2]);
-
-            int minResp;
-            int segResp;
-            int milResp;
-            minResp = min - min2;
-            segResp = seg - seg2;
-            milResp = mil - mil2;
-            System.out.println("..." + segResp);
-
-            lin[1] = minResp + ":" + segResp + ":" + Math.abs(milResp);
-            tm.addRow(lin);
-        }
-        //
-        try {
-            tHor.stop();
-            tMin.stop();
-            tSeg.stop();
-            txtHor1.setText("0");
-        } catch (Exception ex) {
-
-        }
-
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        if (clic2 == 1) {
-            Object[] col;
-            col = new Object[3];
-            col[1] = "Primeiro tudono";
-            col[2] = "Hora";
-            col[3] = "Duração Total";
-            Object[][] lin;
-            lin = new Object[1][3];
-            lin[0][0] = "1";
-            lin[0][1] = txtHor2.getText() + ":" + txtMin2.getText() + ":" + txtSeg2.getText();
-            lin[0][2] = txtHor2.getText() + ":" + txtMin2.getText() + ":" + txtSeg2.getText();
-            DefaultTableModel tm;
-            tm = new DefaultTableModel(lin, col);
-            jTable1.setModel(tm);
-            clic2 = 1;
-
-        } else {
-            //JOptionPane.showMessageDialog(this, "clicou");
-            DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
-            Object[] lin;
-            lin = new Object[3];
-            lin[0] = tm.getRowCount() + 1;
-            //lin[1]=txtMin.getText()+":"+txtSeg.getText()+":"+txtMil.getText();
-            lin[2] = txtHor2.getText() + ":" + txtMin2.getText() + ":" + txtSeg2.getText();
-            System.out.println("Somar");
-            int hor = Integer.parseInt(txtHor2.getText());
-            int min = Integer.parseInt(txtMin2.getText());
-            int seg = Integer.parseInt(txtSeg1.getText());
-
-            System.out.println(hor + " " + min + " " + seg);
-            Object tudo = jTable1.getModel().getValueAt(tm.getRowCount() - 1, 2);
-            System.out.println(tudo);
-            String minSegMil = (String) tudo;
-            String[] tem = minSegMil.split(":");
-            int ho2 = Integer.parseInt(tem[0]);
-            int min2 = Integer.parseInt(tem[1]);
-            int seg2 = Integer.parseInt(tem[2]);
-
-            int hoResp;
-            int minResp;
-            int segResp;
-            hoResp = ho2 - ho2;
-            minResp = min - min2;
-            segResp = seg - seg2;
-            System.out.println("..." + segResp);
-
-            lin[1] = minResp + ":" + minResp + ":" + Math.abs(segResp);
-            tm.addRow(lin);
-        }
-        //
-        try {
-            tHor2.stop();
-            tMin2.stop();
-            tSeg2.stop();
-            txtHor2.setText("0");
-        } catch (Exception ex) {
-
-        }
-        //
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jRadioButtonMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem3ActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -429,8 +233,30 @@ public class intuUsuario extends javax.swing.JFrame {
 
     private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
         // TODO add your handling code here:
-         new alteraUSU().setVisible(true);
+        new alteraUSU().setVisible(true);
     }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        //
+        criarTabela();
+
+        JScrollPane scrollPane = new JScrollPane(tabela);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(iniciarButton);
+        buttonPanel.add(terminarButton);
+
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.add(scrollPane, BorderLayout.CENTER);
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        JOptionPane.showMessageDialog(null, mainPanel, "Tabela de Turnos", JOptionPane.PLAIN_MESSAGE);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -477,10 +303,7 @@ public class intuUsuario extends javax.swing.JFrame {
      }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -497,11 +320,5 @@ public class intuUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    public static javax.swing.JTextField txtHor1;
-    public static javax.swing.JTextField txtHor2;
-    public static javax.swing.JTextField txtMin1;
-    public static javax.swing.JTextField txtMin2;
-    public static javax.swing.JTextField txtSeg1;
-    public static javax.swing.JTextField txtSeg2;
     // End of variables declaration//GEN-END:variables
 }

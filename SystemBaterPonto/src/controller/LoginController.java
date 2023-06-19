@@ -52,8 +52,8 @@ public class LoginController {
                 || usuarios.equals("esdras") && senha.equals("esdras")) {
 
             cadastro telaDeCadastro = new cadastro();
-            new intADM().setVisible(true);
-
+            new intADM().setVisible(true);      
+            
         } else if (existe) {
             intuUsuario telaDeUsuarioComun = new intuUsuario();
             new intuUsuario().setVisible(true);

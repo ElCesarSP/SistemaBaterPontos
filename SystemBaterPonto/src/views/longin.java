@@ -108,9 +108,11 @@ public class longin extends javax.swing.JFrame {
       
         try {
             controller.autenticar();
+            
+            
+            
         } catch (SQLException ex) {
             Logger.getLogger(longin.class.getName()).log(Level.SEVERE, null, ex);
-            
         } catch (CloneNotSupportedException ex) {
             Logger.getLogger(longin.class.getName()).log(Level.SEVERE, null, ex);
             
