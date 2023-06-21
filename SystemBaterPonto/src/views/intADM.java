@@ -68,6 +68,12 @@ public class intADM extends javax.swing.JFrame {
 
         jLabel1.setText("Nome :");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 47, 24));
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 69, 220, 40));
 
         jLabel2.setText("ID :");
@@ -222,6 +228,12 @@ public class intADM extends javax.swing.JFrame {
         new DeletUsuAdm().setVisible(true);
         
     }//GEN-LAST:event_jRadioButtonMenuItem3ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+        
+        // evento 
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments

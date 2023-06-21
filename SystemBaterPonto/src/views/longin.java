@@ -107,10 +107,7 @@ public class longin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       
         try {
-            controller.autenticar();
-            
-            
-            
+            controller.autenticar();                             
         } catch (SQLException ex) {
             Logger.getLogger(longin.class.getName()).log(Level.SEVERE, null, ex);
         } catch (CloneNotSupportedException ex) {

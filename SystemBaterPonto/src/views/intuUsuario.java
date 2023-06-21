@@ -7,10 +7,16 @@ package views;
 
 import Horario.Horario;
 import Horario.RelogioTabela;
+import cadastro.Usuario;
+import dao.UsuarioDAO;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -93,7 +99,7 @@ public class intuUsuario extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtnome = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -119,12 +125,12 @@ public class intuUsuario extends javax.swing.JFrame {
         jLabel1.setText("Nome :");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 47, -1, -1));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtnome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtnomeActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 74, 221, 29));
+        jPanel1.add(txtnome, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 74, 221, 29));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 134, 221, 32));
 
         jLabel3.setText("Identificador Único :");
@@ -236,9 +242,13 @@ public class intuUsuario extends javax.swing.JFrame {
         new alteraUSU().setVisible(true);
     }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+
+        //evento a onde a qual vamos busca do banco de dados os nome e dadodos pessoais do funcionario
+        
+
+    }//GEN-LAST:event_txtnomeActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
@@ -317,8 +327,8 @@ public class intuUsuario extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField txtnome;
     // End of variables declaration//GEN-END:variables
 }
