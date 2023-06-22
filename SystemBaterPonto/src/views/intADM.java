@@ -176,6 +176,11 @@ public class intADM extends javax.swing.JFrame {
         jMenu1.add(jRadioButtonMenuItem3);
 
         jMenuItem2.setText("Informações");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jRadioButtonMenuItem2.setSelected(true);
@@ -222,6 +227,11 @@ public class intADM extends javax.swing.JFrame {
         new DeletUsuAdm().setVisible(true);
         
     }//GEN-LAST:event_jRadioButtonMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        new Informaçoes().setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
