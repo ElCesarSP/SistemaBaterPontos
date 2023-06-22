@@ -180,7 +180,7 @@ public class intuUsuario extends javax.swing.JFrame {
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 220, 30));
 
         jButton6.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
-        jButton6.setText("Espediente");
+        jButton6.setText("Expediente");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -207,6 +207,11 @@ public class intuUsuario extends javax.swing.JFrame {
 
         jRadioButtonMenuItem2.setSelected(true);
         jRadioButtonMenuItem2.setText("Suporte");
+        jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jRadioButtonMenuItem2);
 
         jRadioButtonMenuItem3.setSelected(true);
@@ -257,6 +262,11 @@ public class intuUsuario extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(null, mainPanel, "Tabela de Turnos", JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jRadioButtonMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        new SUPORTE().setVisible(true);
+    }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

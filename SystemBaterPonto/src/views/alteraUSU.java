@@ -163,7 +163,7 @@ public class alteraUSU extends javax.swing.JFrame {
         jMenu1.add(jRadioButtonMenuItem1);
 
         jRadioButtonMenuItem2.setSelected(true);
-        jRadioButtonMenuItem2.setText("Susporte ");
+        jRadioButtonMenuItem2.setText("Suporte ");
         jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonMenuItem2ActionPerformed(evt);
@@ -181,6 +181,7 @@ public class alteraUSU extends javax.swing.JFrame {
 
     private void jRadioButtonMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem2ActionPerformed
         // TODO add your handling code here:
+        new SUPORTE().setVisible(true);
     }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
 
     private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed

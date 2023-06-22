@@ -56,6 +56,7 @@ public class intADM extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jRadioButtonMenuItem4 = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -178,6 +179,15 @@ public class intADM extends javax.swing.JFrame {
         jMenuItem2.setText("Informações");
         jMenu1.add(jMenuItem2);
 
+        jRadioButtonMenuItem4.setSelected(true);
+        jRadioButtonMenuItem4.setText("Suporte");
+        jRadioButtonMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jRadioButtonMenuItem4);
+
         jRadioButtonMenuItem2.setSelected(true);
         jRadioButtonMenuItem2.setText("Sair");
         jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +232,11 @@ public class intADM extends javax.swing.JFrame {
         new DeletUsuAdm().setVisible(true);
         
     }//GEN-LAST:event_jRadioButtonMenuItem3ActionPerformed
+
+    private void jRadioButtonMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        new SUPORTE().setVisible(true);
+    }//GEN-LAST:event_jRadioButtonMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,6 +299,7 @@ public class intADM extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
