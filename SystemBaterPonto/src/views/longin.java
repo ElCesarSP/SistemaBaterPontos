@@ -58,7 +58,7 @@ public class longin extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Usuario :");
+        jLabel1.setText("Usuário :");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(230, 90, 59, 20);
 
@@ -72,6 +72,7 @@ public class longin extends javax.swing.JFrame {
         PassSenh.setBounds(230, 190, 305, 33);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jButton1.setText("Entrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,11 +88,14 @@ public class longin extends javax.swing.JFrame {
         jLabel3.setBounds(0, 0, 830, 470);
 
         jMenu1.setText("Menu");
+        jMenu1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 
+        jRadioButtonMenuItem1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("Política de Privacidade");
         jMenu1.add(jRadioButtonMenuItem1);
 
+        jRadioButtonMenuItem2.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem2.setSelected(true);
         jRadioButtonMenuItem2.setText("Suporte");
         jMenu1.add(jRadioButtonMenuItem2);
@@ -109,7 +113,7 @@ public class longin extends javax.swing.JFrame {
         try {
             controller.autenticar();
             
-            
+       
             
         } catch (SQLException ex) {
             Logger.getLogger(longin.class.getName()).log(Level.SEVERE, null, ex);

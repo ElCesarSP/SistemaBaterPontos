@@ -41,9 +41,9 @@ public class LoginController {
             Senh = senha;
         }
 
-        /*Aqui estou usando regras de negosio para poder somentes usuario do projeto poder realizar
+        /*Aqui estou usando regras de negocio para poder somentes usuario do projeto poder realizar
          Por padrão futuramento vamos modelar no banco de dados como seria somente usuarios
-         cadastrado que poder realizar a tela de catro e implementar mais novos cadastro de adm
+         cadastrado que poder realizar a tela de cadastro e implementar mais novos cadastro de adm
          */
         if (usuarios.equals("admin") && senha.equals("admin")
                 || usuarios.equals("cesar") && senha.equals("cesar")
@@ -57,11 +57,11 @@ public class LoginController {
         } else if (existe) {
             intuUsuario telaDeUsuarioComun = new intuUsuario();
             new intuUsuario().setVisible(true);
-
+            
         } else {
             JOptionPane.showMessageDialog(null, "Usuario o senha Invalidos");
         }
-
+        
         /*
          if (existe) {
          cadastro telaDeCadastro = new cadastro();

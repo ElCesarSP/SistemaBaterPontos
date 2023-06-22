@@ -58,6 +58,7 @@ public class cadastro extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         txtUsu = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -75,6 +76,7 @@ public class cadastro extends javax.swing.JFrame {
         txtRua = new javax.swing.JTextField();
         txtComple = new javax.swing.JTextField();
         forCpe = new javax.swing.JFormattedTextField();
+        jLabel20 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
@@ -90,9 +92,11 @@ public class cadastro extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Nome :");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setText("Nome:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("CPF :");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 89, -1, -1));
         jPanel1.add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 52, 202, 30));
@@ -100,28 +104,35 @@ public class cadastro extends javax.swing.JFrame {
         jPanel1.add(ForCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 111, 169, 29));
         jPanel1.add(ForData, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 52, 120, 30));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Data de Nascimento :");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 30, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("RG");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 89, -1, -1));
         jPanel1.add(ForRg, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 111, 150, 29));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Cargo :");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 147, -1, -1));
 
-        jLabel6.setText("Teleone :");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setText("Telefone :");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, -1, -1));
         jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 80, 30));
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Senha :");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, -1, -1));
         jPanel1.add(passSenh, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 140, 30));
         jPanel1.add(txtTele, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 110, 30));
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setText("ID :");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, -1, -1));
 
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel18.setText("Usuário:");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
@@ -132,20 +143,28 @@ public class cadastro extends javax.swing.JFrame {
         });
         jPanel1.add(txtUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 180, 30));
 
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
+        jLabel19.setText("img1");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(-230, -10, 960, 520));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 360, 280));
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel9.setText("Estado :");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 58, -1));
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel10.setText("Bairro :");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 86, -1, -1));
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel11.setText("Referencia :");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 151, -1, -1));
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setText("Número :");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
         jPanel2.add(txtEsta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 160, 32));
@@ -153,15 +172,19 @@ public class cadastro extends javax.swing.JFrame {
         jPanel2.add(txtRefe, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 171, 163, 32));
         jPanel2.add(txtNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 232, 163, 30));
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel13.setText("Cidade :");
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel14.setText("Rua :");
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel15.setText("Complemento");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, -1, -1));
 
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel16.setText("CEP :");
         jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
         jPanel2.add(txtCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 160, 32));
@@ -169,18 +192,24 @@ public class cadastro extends javax.swing.JFrame {
         jPanel2.add(txtComple, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 171, 170, 32));
         jPanel2.add(forCpe, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 170, 30));
 
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
+        jLabel20.setText("img2");
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, -20, 960, 530));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 370, 282));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jButton1.setText("Cancelar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 90, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 100, 30));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jButton3.setText("Salvar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,19 +218,21 @@ public class cadastro extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(667, 350, 100, 30));
 
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (1).png"))); // NOI18N
         jLabel17.setText("Img");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, -1, -1));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 0, -1, -1));
 
         jMenu1.setText("Menu");
+        jMenu1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu1ActionPerformed(evt);
             }
         });
 
+        jRadioButtonMenuItem1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("Volta a página inicial");
+        jRadioButtonMenuItem1.setText("Voltar a página inicial");
         jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonMenuItem1ActionPerformed(evt);
@@ -448,7 +479,9 @@ public class cadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

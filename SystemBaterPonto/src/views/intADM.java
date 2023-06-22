@@ -49,6 +49,7 @@ public class intADM extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -66,14 +67,17 @@ public class intADM extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel1.setText("Nome :");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 47, 24));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 60, 24));
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 69, 220, 40));
 
+        jLabel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel2.setText("ID :");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, 23));
         jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 142, 220, 40));
 
+        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel3.setText("Cargo :");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
@@ -95,7 +99,7 @@ public class intADM extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Nome ", "Horário de Início", "Horário de Termino", "Data de Acesso"
+                "NOME", "HORÁRIO DE INÍCIO", "HORÁRIO DE TERMINO", "DATA DE ACESSO"
             }
         ) {
             Class[] types = new Class [] {
@@ -122,33 +126,48 @@ public class intADM extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 33, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 22, -1, -1));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 22, 530, -1));
 
-        jButton3.setText("jButton3");
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
+        jButton3.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jButton3.setText("Início");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 90, -1));
 
-        jButton4.setText("jButton4");
+        jButton4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jButton4.setText("Finalizar");
         jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 260, -1, -1));
         jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 220, 40));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
+        jLabel5.setText("imagem2");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, -10, 970, 520));
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(20, 50, 760, 310);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (1).png"))); // NOI18N
         jLabel4.setText("img");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(0, 0, 810, 430);
 
         jMenu1.setText("Menu");
+        jMenu1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 
+        jRadioButtonMenuItem1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("Cadastro");
         jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +177,7 @@ public class intADM extends javax.swing.JFrame {
         });
         jMenu1.add(jRadioButtonMenuItem1);
 
+        jMenuItem1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jMenuItem1.setText("Alteração de Cadastro");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +186,7 @@ public class intADM extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jRadioButtonMenuItem3.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem3.setSelected(true);
         jRadioButtonMenuItem3.setText("Deletar Usuario");
         jRadioButtonMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -175,9 +196,11 @@ public class intADM extends javax.swing.JFrame {
         });
         jMenu1.add(jRadioButtonMenuItem3);
 
+        jMenuItem2.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jMenuItem2.setText("Informações");
         jMenu1.add(jMenuItem2);
 
+        jRadioButtonMenuItem2.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem2.setSelected(true);
         jRadioButtonMenuItem2.setText("Sair");
         jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +245,10 @@ public class intADM extends javax.swing.JFrame {
         new DeletUsuAdm().setVisible(true);
         
     }//GEN-LAST:event_jRadioButtonMenuItem3ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,6 +302,7 @@ public class intADM extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

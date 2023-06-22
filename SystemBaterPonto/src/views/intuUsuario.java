@@ -102,6 +102,7 @@ public class intuUsuario extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -116,6 +117,7 @@ public class intuUsuario extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel1.setText("Nome :");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 47, -1, -1));
 
@@ -127,9 +129,11 @@ public class intuUsuario extends javax.swing.JFrame {
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 74, 221, 29));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 134, 221, 32));
 
+        jLabel3.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel3.setText("Identificador Único :");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 110, -1, -1));
 
+        jTable1.setFont(new java.awt.Font("Calibri", 1, 10)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -144,7 +148,7 @@ public class intuUsuario extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Nome", "Início", "Termino", "Data de Acesso"
+                "NOME", "INÍCIO", "TÉRMINO", "DATA DE ACESSO"
             }
         ) {
             Class[] types = new Class [] {
@@ -161,26 +165,24 @@ public class intuUsuario extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 25, 430, 190));
 
+        jLabel4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel4.setText("Cargo :");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 220, 30));
 
-        jButton6.setFont(new java.awt.Font("Segoe UI Symbol", 1, 14)); // NOI18N
-        jButton6.setText("Espediente");
+        jButton6.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jButton6.setText("Expediente");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -188,16 +190,22 @@ public class intuUsuario extends javax.swing.JFrame {
         });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 210, 40));
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
+        jLabel5.setText("imagem");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 720, 330));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (1).png"))); // NOI18N
         jLabel2.setText("img");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, 0, -1, 500));
 
         jMenu1.setText("Menu");
+        jMenu1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 
+        jRadioButtonMenuItem1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("Altera a senha ");
+        jRadioButtonMenuItem1.setText("Alterar a senha ");
         jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonMenuItem1ActionPerformed(evt);
@@ -205,10 +213,12 @@ public class intuUsuario extends javax.swing.JFrame {
         });
         jMenu1.add(jRadioButtonMenuItem1);
 
+        jRadioButtonMenuItem2.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem2.setSelected(true);
         jRadioButtonMenuItem2.setText("Suporte");
         jMenu1.add(jRadioButtonMenuItem2);
 
+        jRadioButtonMenuItem3.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem3.setSelected(true);
         jRadioButtonMenuItem3.setText("Sair");
         jRadioButtonMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -308,6 +318,7 @@ public class intuUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     public static javax.swing.JPanel jPanel1;
