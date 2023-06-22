@@ -232,4 +232,12 @@ public class UsuarioDAO {
         return null;
     }
 
+    public Usuario SelecAll(String BuscaOnome) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String buscarNomeUsuario() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

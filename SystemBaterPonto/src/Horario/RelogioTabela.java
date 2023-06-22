@@ -17,15 +17,15 @@ public class RelogioTabela {
     private LocalDateTime horarioInicio;
     private LocalDateTime horarioTermino;
     private LocalDate dataInicio;
-    private static final Duration DURACAO_MAXIMA = Duration.ofHours(4).plusMinutes(5);
+    private static final Duration DURACAO_MINIMA = Duration.ofHours(4);
 
     public RelogioTabela(JTable tabela) {
         this.tabela = tabela;
     }
 
     public void iniciarCronometro() {
-        // Configure o horário de início para 0:00
-        horarioInicio = LocalDateTime.of(LocalDate.now(), LocalTime.of(0, 0));
+        // Configure o horário de início para o horário atual
+        horarioInicio = LocalDateTime.now();
         dataInicio = LocalDate.now();
 
         // Inicie o timer para atualizar o tempo na tabela
@@ -38,13 +38,20 @@ public class RelogioTabela {
     }
 
     public void pararCronometro() {
-        // Pare o timer
-        if (timer != null) {
-            timer.stop();
-        }
+        // Defina o horário de término do primeiro turno apenas se tiverem se passado no mínimo 4 horas
+        LocalDateTime horarioAtual = LocalDateTime.now();
+        Duration duracao = Duration.between(horarioInicio, horarioAtual);
 
-        // Defina o horário de término do primeiro turno
-        horarioTermino = LocalDateTime.now();
+        if (duracao.compareTo(DURACAO_MINIMA) >= 0) {
+            // Pare o timer
+            if (timer != null) {
+                timer.stop();
+            }
+
+            // Defina o horário de término do primeiro turno
+            horarioTermino = horarioAtual;
+            atualizarTabela();
+        }
     }
 
     public LocalDateTime getHorarioInicio() {
@@ -64,8 +71,8 @@ public class RelogioTabela {
         LocalDateTime agora = LocalDateTime.now();
         Duration duracao = Duration.between(horarioInicio, agora);
 
-        if (duracao.compareTo(DURACAO_MAXIMA) >= 0) {
-            // O tempo excedeu o limite máximo, pare o cronômetro
+        if (duracao.compareTo(DURACAO_MINIMA) >= 0) {
+            // O tempo mínimo foi atingido, permita parar o cronômetro
             pararCronometro();
         }
 
