@@ -45,6 +45,9 @@ public class Informaçoes extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextPane4 = new javax.swing.JTextPane();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextPane6 = new javax.swing.JTextPane();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -96,23 +99,32 @@ public class Informaçoes extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setText("Gerenciamento de dados:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, -1, 10));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, -1, 10));
 
         jTextPane5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jTextPane5.setText(" O sistema deve armazenar os registros de ponto de cada funcionário de forma segura e organizada. Os dados devem ser facilmente acessíveis e permitir a geração de relatórios para análise posterior.");
         jScrollPane5.setViewportView(jTextPane5);
 
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, 210, 80));
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 210, 80));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel9.setText("Registro de ponto:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 50, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, -1, -1));
 
         jTextPane4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jTextPane4.setText("O sistema deve permitir que os funcionários registrem seus pontos de entrada e saída. Isso pode ser feito de diferentes maneiras, como por meio de um relógio de ponto físico, um aplicativo móvel ou até mesmo um site acessível em um computador.  Contagem de horas: O sistema deve calcular o tempo trabalhado com base nos registros de entrada e saída de cada funcionário. Ele pode calcular o total de horas trabalhadas em um dia, semana ou mês, incluindo horas extras, se necessário.");
+        jTextPane4.setText("O sistema deve permitir que os funcionários registrem seus pontos de entrada e saída. Isso pode ser feito de diferentes maneiras, como por meio de um relógio de ponto físico, um aplicativo móvel ou até mesmo um site acessível em um computador.");
         jScrollPane4.setViewportView(jTextPane4);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 200, -1));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 210, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setText("Usuário administrador:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, -1, -1));
+
+        jTextPane6.setText("O sistema deve ter um tipo especial de usuário chamado \"administrador\". O administrador tem privilégios adicionais em relação aos usuários comuns, como acesso a configurações, gerenciamento de funcionários, geração de relatórios e outras tarefas administrativas.");
+        jScrollPane6.setViewportView(jTextPane6);
+
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 200, 220, 110));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
         jLabel2.setText("img");
@@ -198,6 +210,7 @@ public class Informaçoes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -216,10 +229,12 @@ public class Informaçoes extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextPane jTextPane2;
     private javax.swing.JTextPane jTextPane3;
     private javax.swing.JTextPane jTextPane4;
     private javax.swing.JTextPane jTextPane5;
+    private javax.swing.JTextPane jTextPane6;
     // End of variables declaration//GEN-END:variables
 }

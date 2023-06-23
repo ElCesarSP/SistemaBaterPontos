@@ -197,7 +197,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="310" y="200" width="-1" height="10"/>
+              <AbsoluteConstraints x="290" y="200" width="-1" height="10"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -207,7 +207,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="280" y="220" width="210" height="80"/>
+              <AbsoluteConstraints x="260" y="220" width="210" height="80"/>
             </Constraint>
           </Constraints>
 
@@ -232,7 +232,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="560" y="50" width="-1" height="-1"/>
+              <AbsoluteConstraints x="570" y="50" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -242,7 +242,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="520" y="70" width="200" height="-1"/>
+              <AbsoluteConstraints x="520" y="70" width="210" height="-1"/>
             </Constraint>
           </Constraints>
 
@@ -253,7 +253,39 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="10" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="O sistema deve permitir que os funcion&#xe1;rios registrem seus pontos de entrada e sa&#xed;da. Isso pode ser feito de diferentes maneiras, como por meio de um rel&#xf3;gio de ponto f&#xed;sico, um aplicativo m&#xf3;vel ou at&#xe9; mesmo um site acess&#xed;vel em um computador.  Contagem de horas: O sistema deve calcular o tempo trabalhado com base nos registros de entrada e sa&#xed;da de cada funcion&#xe1;rio. Ele pode calcular o total de horas trabalhadas em um dia, semana ou m&#xea;s, incluindo horas extras, se necess&#xe1;rio."/>
+                <Property name="text" type="java.lang.String" value="O sistema deve permitir que os funcion&#xe1;rios registrem seus pontos de entrada e sa&#xed;da. Isso pode ser feito de diferentes maneiras, como por meio de um rel&#xf3;gio de ponto f&#xed;sico, um aplicativo m&#xf3;vel ou at&#xe9; mesmo um site acess&#xed;vel em um computador."/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JLabel" name="jLabel10">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="11" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Usu&#xe1;rio administrador:"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="540" y="180" width="-1" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="500" y="200" width="220" height="110"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextPane" name="jTextPane6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="O sistema deve ter um tipo especial de usu&#xe1;rio chamado &quot;administrador&quot;. O administrador tem privil&#xe9;gios adicionais em rela&#xe7;&#xe3;o aos usu&#xe1;rios comuns, como acesso a configura&#xe7;&#xf5;es, gerenciamento de funcion&#xe1;rios, gera&#xe7;&#xe3;o de relat&#xf3;rios e outras tarefas administrativas."/>
               </Properties>
             </Component>
           </SubComponents>
