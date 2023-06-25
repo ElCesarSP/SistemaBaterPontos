@@ -108,10 +108,14 @@ public class SUPORTE extends javax.swing.JFrame {
         jLabel11.setText("img");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-80, 0, 920, -1));
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/menu 1.png"))); // NOI18N
         jMenu1.setText("Menu");
+        jMenu1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 
+        jRadioButtonMenuItem1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("Voltar a página inicial");
+        jRadioButtonMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/tela inicial 2.png"))); // NOI18N
         jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonMenuItem1ActionPerformed(evt);

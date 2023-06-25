@@ -54,6 +54,7 @@ public class alteraUSU extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
+        jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -67,9 +68,9 @@ public class alteraUSU extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setText("Usuario antigo :");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 56, -1, -1));
-        jPanel1.add(txtUsuar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 76, 225, 31));
+        jLabel1.setText("Nome do Usuario :");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, -1, -1));
+        jPanel1.add(txtUsuar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 225, 31));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Altera a Senha");
@@ -82,13 +83,13 @@ public class alteraUSU extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Senha Nova :");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 233, -1, -1));
-        jPanel1.add(txtNewUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 253, 225, 36));
-        jPanel1.add(txtNovaSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 133, 225, 34));
+        jPanel1.add(txtNewUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 225, 36));
+        jPanel1.add(txtNovaSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 225, 34));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setText("Novo Usuario :");
+        jLabel5.setText("Confirma Usuario :");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 113, -1, -1));
-        jPanel1.add(passNewSen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 193, 225, 34));
+        jPanel1.add(passNewSen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 225, 34));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
         jLabel7.setText("img");
@@ -124,12 +125,14 @@ public class alteraUSU extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(-10, -10, 820, 440);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/menu 1.png"))); // NOI18N
         jMenu1.setText("Menu");
         jMenu1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 
-        jRadioButtonMenuItem1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        jRadioButtonMenuItem1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("Voltar a página inicial");
+        jRadioButtonMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/tela inicial 2.png"))); // NOI18N
         jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonMenuItem1ActionPerformed(evt);
@@ -137,9 +140,21 @@ public class alteraUSU extends javax.swing.JFrame {
         });
         jMenu1.add(jRadioButtonMenuItem1);
 
-        jRadioButtonMenuItem2.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        jRadioButtonMenuItem3.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jRadioButtonMenuItem3.setSelected(true);
+        jRadioButtonMenuItem3.setText("Informações");
+        jRadioButtonMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/sobre 2.png"))); // NOI18N
+        jRadioButtonMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jRadioButtonMenuItem3);
+
+        jRadioButtonMenuItem2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jRadioButtonMenuItem2.setSelected(true);
         jRadioButtonMenuItem2.setText("Suporte ");
+        jRadioButtonMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/2.png"))); // NOI18N
         jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonMenuItem2ActionPerformed(evt);
@@ -215,6 +230,11 @@ public class alteraUSU extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "O Cancelamento foi efetuado com Sucessor! ");
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jRadioButtonMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        new Informaçoes().setVisible(true);
+    }//GEN-LAST:event_jRadioButtonMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -282,6 +302,7 @@ public class alteraUSU extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
     private javax.swing.JTextField passNewSen2;
     private javax.swing.JTextField txtNewUsuario;
     private javax.swing.JTextField txtNovaSenha;

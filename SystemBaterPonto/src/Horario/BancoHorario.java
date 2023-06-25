@@ -1,13 +1,13 @@
 package Horario;
 
-public class Horario {
+public class BancoHorario {
 
     private int id_hora;
     private String horarioInicio;
     private String horarioTermino;
     private String dataDeAcesso;
 
-    public Horario(int id_hora, String horarioInicio, String horarioTermino, String dataDeAcesso) {
+    public BancoHorario(int id_hora, String horarioInicio, String horarioTermino, String dataDeAcesso) {
         this.id_hora = id_hora;
         this.horarioInicio = horarioInicio;
         this.horarioTermino = horarioTermino;
@@ -17,7 +17,7 @@ public class Horario {
     
     //
 
-    public Horario(String horarioInicio, String horarioTermino, String dataDeAcesso) {
+    public BancoHorario(String horarioInicio, String horarioTermino, String dataDeAcesso) {
         this.horarioInicio = horarioInicio;
         this.horarioTermino = horarioTermino;
         this.dataDeAcesso = dataDeAcesso;

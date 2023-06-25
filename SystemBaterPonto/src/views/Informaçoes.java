@@ -71,60 +71,66 @@ public class Informaçoes extends javax.swing.JFrame {
         jLabel5.setText("Cadastro de usuário:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, 20));
 
-        jTextPane1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jTextPane1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextPane1.setText("O sistema deve permitir que os funcionários se cadastrem fornecendo informações básicas, como nome, endereço de e-mail, senha, número de identificação ou matrícula, departamento, cargo, etc.");
+        jTextPane1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jTextPane1MouseWheelMoved(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextPane1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 190, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 230, 100));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Login:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
 
-        jTextPane2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jTextPane2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextPane2.setText("Os usuários registrados devem poder fazer login no sistema utilizando seu nome de usuário (ou endereço de e-mail) e senha. O login garante que apenas usuários autorizados possam acessar as funcionalidades do sistema.");
         jScrollPane2.setViewportView(jTextPane2);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 200, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 230, 100));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Contagem de horas:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
 
-        jTextPane3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jTextPane3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextPane3.setText("O sistema deve calcular o tempo trabalhado com base nos registros de entrada e saída de cada funcionário. Ele pode calcular o total de horas trabalhadas em um dia, semana ou mês, incluindo horas extras, se necessário.");
         jScrollPane3.setViewportView(jTextPane3);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 180, -1));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 220, 100));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setText("Gerenciamento de dados:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, -1, 10));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, -1, 10));
 
-        jTextPane5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jTextPane5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextPane5.setText(" O sistema deve armazenar os registros de ponto de cada funcionário de forma segura e organizada. Os dados devem ser facilmente acessíveis e permitir a geração de relatórios para análise posterior.");
         jScrollPane5.setViewportView(jTextPane5);
 
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 210, 80));
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 220, 100));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel9.setText("Registro de ponto:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, -1, -1));
 
-        jTextPane4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jTextPane4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextPane4.setText("O sistema deve permitir que os funcionários registrem seus pontos de entrada e saída. Isso pode ser feito de diferentes maneiras, como por meio de um relógio de ponto físico, um aplicativo móvel ou até mesmo um site acessível em um computador.");
         jScrollPane4.setViewportView(jTextPane4);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 210, -1));
+        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, 220, 100));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel10.setText("Usuário administrador:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, -1, -1));
 
+        jTextPane6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextPane6.setText("O sistema deve ter um tipo especial de usuário chamado \"administrador\". O administrador tem privilégios adicionais em relação aos usuários comuns, como acesso a configurações, gerenciamento de funcionários, geração de relatórios e outras tarefas administrativas.");
         jScrollPane6.setViewportView(jTextPane6);
 
-        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 200, 220, 110));
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, 220, 100));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
         jLabel2.setText("img");
@@ -149,10 +155,14 @@ public class Informaçoes extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/menu 1.png"))); // NOI18N
         jMenu1.setText("Menu");
+        jMenu1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 
+        jRadioButtonMenuItem1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("Voltar pagina inicial");
+        jRadioButtonMenuItem1.setText("Voltar a pagina inicial");
+        jRadioButtonMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/tela inicial 2.png"))); // NOI18N
         jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonMenuItem1ActionPerformed(evt);
@@ -172,6 +182,10 @@ public class Informaçoes extends javax.swing.JFrame {
         this.dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
+
+    private void jTextPane1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jTextPane1MouseWheelMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextPane1MouseWheelMoved
 
     /**
      * @param args the command line arguments

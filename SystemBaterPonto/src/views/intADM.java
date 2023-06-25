@@ -9,17 +9,23 @@ import cadastro.Usuario;
 import dao.Conexao;
 import dao.UsuarioDAO;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import static jdk.nashorn.internal.runtime.Debug.id;
 
 /**
  *
  * @author César
  */
 public class intADM extends javax.swing.JFrame {
+
+    private ResultSet resultSet;
 
     /**
      * Creates new form intADM
@@ -39,16 +45,23 @@ public class intADM extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tabela = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        txtnomes = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        resultado = new javax.swing.JTextArea();
+        txtMes = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtHorasPercorridas = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -56,7 +69,8 @@ public class intADM extends javax.swing.JFrame {
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jRadioButtonMenuItem4 = new javax.swing.JRadioButtonMenuItem();
+        jRadioButtonMenuItem5 = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -70,7 +84,6 @@ public class intADM extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel1.setText("Nome :");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 60, 24));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 69, 220, 40));
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel2.setText("ID :");
@@ -81,76 +94,88 @@ public class intADM extends javax.swing.JFrame {
         jLabel3.setText("Cargo :");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabela.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "NOME", "HORÁRIO DE INÍCIO", "HORÁRIO DE TERMINO", "DATA DE ACESSO"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
+        jLabel6.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel6.setText("Nome Usuarios do Sistema :");
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        tabela.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                tabelaAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        jScrollPane2.setViewportView(tabela);
+        jLabel7.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel7.setText("Resultado no Campo de Busca :");
+
+        resultado.setColumns(20);
+        resultado.setRows(5);
+        jScrollPane1.setViewportView(resultado);
+
+        jLabel8.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel8.setText("Data Mes  :");
+
+        jLabel10.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel10.setText("Horas pecorrida :");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 33, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtnomes, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtHorasPercorridas, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtnomes, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(txtMes)
+                    .addComponent(txtHorasPercorridas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 22, 530, -1));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 460, -1));
 
         jButton3.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jButton3.setText("Início");
+        jButton3.setText("Cancelar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 90, -1));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 120, -1));
 
         jButton4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jButton4.setText("Finalizar");
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 260, -1, -1));
+        jButton4.setText("Consultar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 260, 110, -1));
         jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 220, 40));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 220, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
         jLabel5.setText("imagem2");
@@ -164,12 +189,14 @@ public class intADM extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(0, 0, 810, 430);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/menu 1.png"))); // NOI18N
         jMenu1.setText("Menu");
         jMenu1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 
         jRadioButtonMenuItem1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("Cadastro");
+        jRadioButtonMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/addFun.png"))); // NOI18N
         jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonMenuItem1ActionPerformed(evt);
@@ -178,6 +205,7 @@ public class intADM extends javax.swing.JFrame {
         jMenu1.add(jRadioButtonMenuItem1);
 
         jMenuItem1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/altera.png"))); // NOI18N
         jMenuItem1.setText("Alteração de Cadastro");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,6 +217,7 @@ public class intADM extends javax.swing.JFrame {
         jRadioButtonMenuItem3.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem3.setSelected(true);
         jRadioButtonMenuItem3.setText("Deletar Usuario");
+        jRadioButtonMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/delete.png"))); // NOI18N
         jRadioButtonMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonMenuItem3ActionPerformed(evt);
@@ -196,13 +225,32 @@ public class intADM extends javax.swing.JFrame {
         });
         jMenu1.add(jRadioButtonMenuItem3);
 
-        jMenuItem2.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
-        jMenuItem2.setText("Informações");
-        jMenu1.add(jMenuItem2);
+        jRadioButtonMenuItem4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jRadioButtonMenuItem4.setSelected(true);
+        jRadioButtonMenuItem4.setText("Informações");
+        jRadioButtonMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/sobre 2.png"))); // NOI18N
+        jRadioButtonMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jRadioButtonMenuItem4);
+
+        jRadioButtonMenuItem5.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jRadioButtonMenuItem5.setSelected(true);
+        jRadioButtonMenuItem5.setText("Suporte");
+        jRadioButtonMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/2.png"))); // NOI18N
+        jRadioButtonMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jRadioButtonMenuItem5);
 
         jRadioButtonMenuItem2.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem2.setSelected(true);
         jRadioButtonMenuItem2.setText("Sair");
+        jRadioButtonMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/redirecionar.png"))); // NOI18N
         jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonMenuItem2ActionPerformed(evt);
@@ -221,19 +269,14 @@ public class intADM extends javax.swing.JFrame {
     private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
         // TODO add your handling code here:
         //Aqui o usuario Administrador tera a interface de castro do usuario 
-       new cadastro().setVisible(true);
+        new cadastro().setVisible(true);
         //pronto ele ja esta interligada a tela do usuario Administrador
     }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
 
     private void jRadioButtonMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem2ActionPerformed
         // TODO add your handling code here:
-        new longin().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
-
-    private void tabelaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tabelaAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tabelaAncestorAdded
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
@@ -243,12 +286,97 @@ public class intADM extends javax.swing.JFrame {
     private void jRadioButtonMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem3ActionPerformed
         // TODO add your handling code here:
         new DeletUsuAdm().setVisible(true);
-        
+
     }//GEN-LAST:event_jRadioButtonMenuItem3ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        txtnomes.setText("");
+        
+        txtMes.setText("");
+        txtHorasPercorridas.setText("");
+        resultado.setText("");
+
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jRadioButtonMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        new SUPORTE().setVisible(true);
+    }//GEN-LAST:event_jRadioButtonMenuItem5ActionPerformed
+
+    private void jRadioButtonMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        new Informaçoes().setVisible(true);
+    }//GEN-LAST:event_jRadioButtonMenuItem4ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        //Consulta do usuarios
+
+        String buscarNome = txtnomes.getText();
+        String mesTexto = txtMes.getText(); // Obtém o valor do campo de texto para o mês
+        // Obtém o valor do campo de texto para a data
+        String horasPercorridasTexto = txtHorasPercorridas.getText(); // Obtém o valor do campo de texto para as horas percorridas
+
+        Connection conexao;
+        try {
+            conexao = new dao.Conexao().getConnection();
+            Statement statement = conexao.createStatement();
+
+            String query = "SELECT h.horas, h.horaspecorrida, h.datas "
+                    + "FROM usuario u "
+                    + "INNER JOIN horas h ON u.id_usuario = h.id_usuario "
+                    + "WHERE u.nome = ? ";
+
+            // Verifica se o campo de texto para o mês não está vazio
+            if (!mesTexto.isEmpty()) {
+                int mes = Integer.parseInt(mesTexto);
+                query += "AND MONTH(h.datas) = " + mes + " ";
+            }
+
+            // Verifica se o campo de texto para a data não está vazio
+            /*if (!dataTexto.isEmpty()) {
+                query += "AND h.datas = '" + dataTexto + "' ";
+            }*/
+
+            // Verifica se o campo de texto para as horas percorridas não está vazio
+            if (!horasPercorridasTexto.isEmpty()) {
+                query += "AND h.horaspecorrida = '" + horasPercorridasTexto + "' ";
+            }
+
+            PreparedStatement preparedStatement = conexao.prepareStatement(query);
+            preparedStatement.setString(1, buscarNome);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            boolean encontrouDados = false;
+
+            while (resultSet.next()) {
+                String horas = resultSet.getString("horas");
+                String horasPercorrida = resultSet.getString("horaspecorrida");
+                String data = resultSet.getString("datas");
+
+                resultado.append("Horas: " + horas + "\n");
+                resultado.append("Horas Percorridas: " + horasPercorrida + "\n");
+                resultado.append("Datas: " + data + "\n");
+                resultado.append("\n");
+
+                encontrouDados = true;
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            conexao.close();
+
+            if (!encontrouDados) {
+                resultado.setText("Nenhum dado encontrado para a busca realizada.");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Não foi possível realizar a consulta!");
+            ex.printStackTrace();
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -285,37 +413,36 @@ public class intADM extends javax.swing.JFrame {
         });
     }
 
-    public static void preencherTabela() {
-        DefaultTableModel model = ( DefaultTableModel) tabela.getModel();
-        model.setNumRows(0);
-        
-        Object colunas [] = new Object[3];
-        
-        
-    }
-    
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem4;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    public static javax.swing.JTable tabela;
+    private javax.swing.JTextArea resultado;
+    private javax.swing.JTextField txtHorasPercorridas;
+    private javax.swing.JTextField txtMes;
+    private javax.swing.JTextField txtnomes;
     // End of variables declaration//GEN-END:variables
 }

@@ -56,6 +56,7 @@ public class DeletUsuAdm extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
+        jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -157,6 +158,7 @@ public class DeletUsuAdm extends javax.swing.JFrame {
         jLabel7.setText("img");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, -20, 900, -1));
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/menu 1.png"))); // NOI18N
         jMenu1.setText("Menu");
         jMenu1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
@@ -165,9 +167,10 @@ public class DeletUsuAdm extends javax.swing.JFrame {
             }
         });
 
-        jRadioButtonMenuItem2.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        jRadioButtonMenuItem2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jRadioButtonMenuItem2.setSelected(true);
         jRadioButtonMenuItem2.setText("Volta  a Página Inícial");
+        jRadioButtonMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/tela inicial 2.png"))); // NOI18N
         jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonMenuItem2ActionPerformed(evt);
@@ -175,8 +178,21 @@ public class DeletUsuAdm extends javax.swing.JFrame {
         });
         jMenu1.add(jRadioButtonMenuItem2);
 
+        jRadioButtonMenuItem3.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jRadioButtonMenuItem3.setSelected(true);
+        jRadioButtonMenuItem3.setText("Informações");
+        jRadioButtonMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/sobre 2.png"))); // NOI18N
+        jRadioButtonMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jRadioButtonMenuItem3);
+
+        jRadioButtonMenuItem1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("Suporte");
+        jRadioButtonMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/2.png"))); // NOI18N
         jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonMenuItem1ActionPerformed(evt);
@@ -280,6 +296,11 @@ public class DeletUsuAdm extends javax.swing.JFrame {
         new SUPORTE().setVisible(true);
     }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
 
+    private void jRadioButtonMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        new Informaçoes().setVisible(true);
+    }//GEN-LAST:event_jRadioButtonMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -337,6 +358,7 @@ public class DeletUsuAdm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     protected final javax.swing.JTextField jTextField3 = new javax.swing.JTextField();

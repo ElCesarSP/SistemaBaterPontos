@@ -5,19 +5,26 @@
  */
 package views;
 
-import Horario.Horario;
-import Horario.RelogioTabela;
+import Horario.Relogio;
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
-import static views.intADM.tabela;
 
 /**
  *
@@ -25,60 +32,17 @@ import static views.intADM.tabela;
  */
 public class intuUsuario extends javax.swing.JFrame {
 
-    private DefaultTableModel model;
+    private JDialog dialog;
+    private LocalDateTime startTime;
+    private Relogio relogio;
     private JTable tabela;
-    private JButton iniciarButton;
-    private JButton terminarButton;
-    private RelogioTabela relogioTabela;
-
-    public void criarTabela() {
-        model = new DefaultTableModel();
-        model.addColumn("Início do 1º Turno");
-        model.addColumn("Horário de Início");
-        model.addColumn("Término do 1º Turno");
-        model.addColumn("Data de Início");
-
-        tabela = new JTable(model);
-
-        iniciarButton = new JButton("Iniciar");
-        iniciarButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                relogioTabela = new RelogioTabela(tabela);
-                relogioTabela.iniciarCronometro();
-
-                Object[] rowData = new Object[4];
-                rowData[0] = relogioTabela.getHorarioTermino();
-                rowData[1] = relogioTabela.getHorarioInicio();
-                rowData[2] = "";
-                rowData[3] = relogioTabela.getDataInicio();
-                model.addRow(rowData);
-            }
-        });
-
-        terminarButton = new JButton("Terminar");
-        terminarButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (relogioTabela != null) {
-                    relogioTabela.pararCronometro();
-
-                    int lastRow = model.getRowCount() - 1;
-                    LocalDateTime horarioTermino = relogioTabela.getHorarioTermino();
-                    model.setValueAt(horarioTermino, lastRow, 2);
-                }
-            }
-        });
-    }
-
-    public static void close() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    //
 
     /**
      * Creates new form intuUsuario
      */
     public intuUsuario() {
         initComponents();
+        relogio = new Relogio();
 
     }
 
@@ -93,21 +57,21 @@ public class intuUsuario extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        modelotabela = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
+        expediente = new javax.swing.JButton();
+        IntNomeUsu = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
+        jRadioButtonMenuItem4 = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -119,22 +83,15 @@ public class intuUsuario extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel1.setText("Nome :");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 47, -1, -1));
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 74, 221, 29));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 134, 221, 32));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 210, 32));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel3.setText("Identificador Único :");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 110, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
-        jTable1.setFont(new java.awt.Font("Calibri", 1, 10)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        modelotabela.setFont(new java.awt.Font("Calibri", 1, 10)); // NOI18N
+        modelotabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -159,7 +116,16 @@ public class intuUsuario extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        modelotabela.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                modelotabelaAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jScrollPane1.setViewportView(modelotabela);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -178,17 +144,24 @@ public class intuUsuario extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel4.setText("Cargo :");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 220, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 210, 30));
 
-        jButton6.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jButton6.setText("Expediente");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        expediente.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        expediente.setText("Expediente");
+        expediente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                expedienteActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 210, 40));
+        jPanel1.add(expediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 220, 50));
+
+        IntNomeUsu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IntNomeUsuActionPerformed(evt);
+            }
+        });
+        jPanel1.add(IntNomeUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 210, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
         jLabel5.setText("imagem");
@@ -200,12 +173,14 @@ public class intuUsuario extends javax.swing.JFrame {
         jLabel2.setText("img");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-90, 0, -1, 500));
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/menu 1.png"))); // NOI18N
         jMenu1.setText("Menu");
         jMenu1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 
         jRadioButtonMenuItem1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("Alterar a senha ");
+        jRadioButtonMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/troca a senha.png"))); // NOI18N
         jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonMenuItem1ActionPerformed(evt);
@@ -213,14 +188,21 @@ public class intuUsuario extends javax.swing.JFrame {
         });
         jMenu1.add(jRadioButtonMenuItem1);
 
-        jRadioButtonMenuItem2.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
-        jRadioButtonMenuItem2.setSelected(true);
-        jRadioButtonMenuItem2.setText("Suporte");
-        jMenu1.add(jRadioButtonMenuItem2);
+        jRadioButtonMenuItem4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jRadioButtonMenuItem4.setSelected(true);
+        jRadioButtonMenuItem4.setText("Suporte");
+        jRadioButtonMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/2.png"))); // NOI18N
+        jRadioButtonMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jRadioButtonMenuItem4);
 
         jRadioButtonMenuItem3.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem3.setSelected(true);
         jRadioButtonMenuItem3.setText("Sair");
+        jRadioButtonMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/redirecionar.png"))); // NOI18N
         jRadioButtonMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonMenuItem3ActionPerformed(evt);
@@ -250,23 +232,62 @@ public class intuUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void expedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expedienteActionPerformed
+
+        // Criação dos dados vazios
+        int numColunas = 4;
+        int numLinhas = 0;
+        String[] colunas = {"TURNO", "HORAS", "HORAS PERCORRIDAS", "DATA"};
+        String[][] dados = new String[numLinhas][numColunas];
+
+        // Criação do modelo da tabela com os nomes das colunas
+        DefaultTableModel model = new DefaultTableModel(dados, colunas);
+
+        // Criação da tabela usando o modelo
+        JTable tabela = new JTable(model);
+
+        // Criação dos botões "inicio" e "termino"
+        JButton inicioButton = new JButton("Início");
+        JButton terminoButton = new JButton("Término");
+
+        // Configuração do layout do painel
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(new JScrollPane(tabela), BorderLayout.CENTER);
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.add(inicioButton);
+        buttonPanel.add(terminoButton);
+
+        panel.add(buttonPanel, BorderLayout.SOUTH);
+
+        // Criação da janela para exibir a tabela
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.add(panel);
+        frame.pack();
+        frame.setVisible(true);
+
+        // Criação e inicialização do cronômetro
+        Cronometro cronometro = new Cronometro(model);
+        inicioButton.addActionListener(e -> cronometro.iniciarCronometro());
+        terminoButton.addActionListener(e -> cronometro.pararCronometro());
+
+
+    }//GEN-LAST:event_expedienteActionPerformed
+
+    private void jRadioButtonMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem4ActionPerformed
         // TODO add your handling code here:
-        //
-        criarTabela();
+        new SUPORTE().setVisible(true);
+    }//GEN-LAST:event_jRadioButtonMenuItem4ActionPerformed
 
-        JScrollPane scrollPane = new JScrollPane(tabela);
+    private void modelotabelaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_modelotabelaAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modelotabelaAncestorAdded
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(iniciarButton);
-        buttonPanel.add(terminarButton);
+    private void IntNomeUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IntNomeUsuActionPerformed
+        // TODO add your handling code here:
 
-        JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.add(scrollPane, BorderLayout.CENTER);
-        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
-
-        JOptionPane.showMessageDialog(null, mainPanel, "Tabela de Turnos", JOptionPane.PLAIN_MESSAGE);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_IntNomeUsuActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -279,16 +300,21 @@ public class intuUsuario extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(intuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(intuUsuario.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(intuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(intuUsuario.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(intuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(intuUsuario.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(intuUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(intuUsuario.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -301,19 +327,18 @@ public class intuUsuario extends javax.swing.JFrame {
         });
     }
 
-    /*public static void preenchertabela () {
-     DefaultTableModel model = (DefaultTableModel) tabela.getModel();
-     model.setNumRows(0);
-        
-     Object coluna [] = new Object[4];
-     Horario horario = new Horario(null, null, null);
-        
-        
-        
-     }*/
+    public JTextField getIntNomeUsu() {
+        return IntNomeUsu;
+    }
+
+    public void setIntNomeUsu(JTextField IntNomeUsu) {
+        this.IntNomeUsu = IntNomeUsu;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton6;
+    private javax.swing.JTextField IntNomeUsu;
+    private javax.swing.JButton expediente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -324,12 +349,11 @@ public class intuUsuario extends javax.swing.JFrame {
     public static javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable modelotabela;
     // End of variables declaration//GEN-END:variables
 }

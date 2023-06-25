@@ -10,6 +10,7 @@ import views.cadastro;
 import views.intADM;
 import views.intuUsuario;
 import views.longin;
+import views.intuUsuario;
 
 public class LoginController {
 
@@ -27,6 +28,9 @@ public class LoginController {
         //Buscar o usuario da views
         String usuarios = views.getTxtUsu().getText();
         String senha = views.getPassSenh().getText();
+        
+        //Inteface usuario 
+        
 
         Usuario autenticarUsuario = new Usuario(usuarios, senha);
         //Verificar se exisate no banco de dados
@@ -50,6 +54,8 @@ public class LoginController {
                 || usuarios.equals("rafael") && senha.equals("rafael")
                 || usuarios.equals("pedro") && senha.equals("pedro")
                 || usuarios.equals("esdras") && senha.equals("esdras")) {
+            
+            
 
             cadastro telaDeCadastro = new cadastro();
             new intADM().setVisible(true);      
@@ -62,15 +68,7 @@ public class LoginController {
             JOptionPane.showMessageDialog(null, "Usuario o senha Invalidos");
         }
         
-        /*
-         if (existe) {
-         cadastro telaDeCadastro = new cadastro();
-         new intADM().setVisible(true);
-         JOptionPane.showMessageDialog(null," Sejá Bem-Vindo ");
-            
-         }else{
-         JOptionPane.showMessageDialog(null, "Usuario o senha Invalidos" );
-         }*/
+        
     }
 
 }

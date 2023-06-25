@@ -2,7 +2,7 @@ package cadastro;
 
 public class Usuario {
 
-    private int id;
+    private int id_usuario;
     private String nome;
     private String usuarios;
     private String senha;
@@ -21,8 +21,8 @@ public class Usuario {
     private String numero;
     private String cep;
 
-    public Usuario(int id, String nome, String usuarios, String senha, String cpf, String rg, String cargo, String dataNascimento, String IdentificadoUnico, String telefone, String estado, String cidade, String bairro, String rua, String referencia, String complemento, String numero) {
-        this.id = id;
+    public Usuario(int id_usuario, String nome, String usuarios, String senha, String cpf, String rg, String cargo, String dataNascimento, String IdentificadoUnico, String telefone, String estado, String cidade, String bairro, String rua, String referencia, String complemento, String numero) {
+        this.id_usuario = id_usuario;
         this.nome = nome;
         this.usuarios = usuarios;
         this.senha = senha;
@@ -40,11 +40,11 @@ public class Usuario {
         this.complemento = complemento;
         this.numero = numero;
     }
-
-    
-    
-    
-    
+ ///
+    public Usuario(String nome) {
+        this.nome = nome;
+    }
+////   
     public Usuario(String nome, String usuarios, String senha, String cpf, String rg, String cargo, String dataNascimento, String IdentificadoUnico, String telefone, String estado, String cidade, String bairro, String rua, String referencia, String complemento, String numero, String cep) {
         this.nome = nome;
         this.usuarios = usuarios;
@@ -66,22 +66,22 @@ public class Usuario {
     }
 
     public Usuario(int id) {
-        this.id = id;
+        this.id_usuario = id_usuario;
     }
 
     public int getId() {
-        return id;
+        return id_usuario;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_usuario = id;
     }
 
    
 
     //Busca somente a senha e usuario de acessor
-    public Usuario(int id, String usuarios, String senha) {
-        this.id = id;
+    public Usuario(int id_usuario, String usuarios, String senha) {
+        this.id_usuario = id_usuario;
         this.usuarios = usuarios;
         this.senha = senha;
 
