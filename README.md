@@ -1,4 +1,4 @@
-# SistemaBaterPontoscriado do, absoluto zero, a onde ocorreu muita 
+" Bem-vindo ao Sistema Bater Pontos: Simplificando o Registro de Horário! "
 
 Apresentando o SistemaBaterPontos: Gerenciamento Eficiente de Registro de Ponto
 
