@@ -137,8 +137,8 @@ public class longin extends javax.swing.JFrame {
       
         try {
             controller.autenticar();
-            
-       
+            txtUsu.setText("");
+            PassSenh.setText("");
             
         } catch (SQLException ex) {
             Logger.getLogger(longin.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,5 +1,6 @@
 package dao;
 
+import Horario.Horas;
 import cadastro.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import views.cadastro;
@@ -248,4 +250,48 @@ public class UsuarioDAO {
         }
         return null;
     }
+
+    //Teste
+    public List<Horas> buscarHorasPorIdentificadorUnico(String identificadorUnico, String data) {
+        List<Horas> horasList = new ArrayList<>();
+
+        try {
+            String query = "SELECT u.nome, h.horas, h.horaspecorrida, h.datas "
+                    + "FROM usuario u "
+                    + "INNER JOIN horas h ON u.id_usuario = h.id_usuario "
+                    + "WHERE u.IndentificadorUnico = ? ";
+
+            // Verifica se o campo de texto para o mês não está vazio
+            if (data != null && !data.isEmpty()) {
+                int mes = Integer.parseInt(data);
+                query += "AND MONTH(h.datas) = " + mes + " ";
+            }
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, identificadorUnico);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String nome = resultSet.getString("nome");
+                String horas = resultSet.getString("horas");
+                String horasPercorrida = resultSet.getString("horaspecorrida");
+                String dataHora = resultSet.getString("datas");
+
+                Horas horasObj = new Horas(nome, horas, horasPercorrida, dataHora);
+                horasList.add(horasObj);
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+
+        } catch (SQLException ex) {
+            System.out.println("Não foi possível realizar a consulta!");
+            ex.printStackTrace();
+        }
+
+        return horasList;
+    }
+
+    // Outros métodos da classe...
 }

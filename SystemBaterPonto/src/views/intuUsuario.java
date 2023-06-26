@@ -10,7 +10,13 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -60,12 +66,19 @@ public class intuUsuario extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        modelotabela = new javax.swing.JTable();
+        resultado = new javax.swing.JTextArea();
+        mestxt = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         expediente = new javax.swing.JButton();
-        IntNomeUsu = new javax.swing.JTextField();
+        txtnomeUsu = new javax.swing.JTextField();
+        consultar = new javax.swing.JButton();
+        cancelar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -83,69 +96,77 @@ public class intuUsuario extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel1.setText("Nome :");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 210, 32));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 210, 40));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel3.setText("Identificador Único :");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
-        modelotabela.setFont(new java.awt.Font("Calibri", 1, 10)); // NOI18N
-        modelotabela.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "NOME", "INÍCIO", "TÉRMINO", "DATA DE ACESSO"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
-            };
+        jPanel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        jLabel6.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel6.setText("Informe seu ID :");
+
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
             }
         });
-        modelotabela.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                modelotabelaAncestorAdded(evt);
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        jScrollPane1.setViewportView(modelotabela);
+
+        jLabel7.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel7.setText("Resultado da Consulta :");
+
+        resultado.setColumns(20);
+        resultado.setRows(5);
+        jScrollPane1.setViewportView(resultado);
+
+        jLabel8.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel8.setText("Data Mês :");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(mestxt, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(mestxt))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 25, 430, 190));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 460, 220));
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel4.setText("Cargo :");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 210, 30));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 210, 40));
 
         expediente.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         expediente.setText("Expediente");
@@ -154,14 +175,32 @@ public class intuUsuario extends javax.swing.JFrame {
                 expedienteActionPerformed(evt);
             }
         });
-        jPanel1.add(expediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 220, 50));
+        jPanel1.add(expediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 140, 40));
 
-        IntNomeUsu.addActionListener(new java.awt.event.ActionListener() {
+        txtnomeUsu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IntNomeUsuActionPerformed(evt);
+                txtnomeUsuActionPerformed(evt);
             }
         });
-        jPanel1.add(IntNomeUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 210, 30));
+        jPanel1.add(txtnomeUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 210, 40));
+
+        consultar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        consultar.setText("Consultar");
+        consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(consultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 120, 40));
+
+        cancelar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        cancelar.setText("Cancelar");
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, 100, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
         jLabel5.setText("imagem");
@@ -228,13 +267,13 @@ public class intuUsuario extends javax.swing.JFrame {
         new alteraUSU().setVisible(true);
     }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtIDActionPerformed
 
     private void expedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expedienteActionPerformed
 
-        // Criação dos dados vazios
+// Criação dos dados vazios
         int numColunas = 4;
         int numLinhas = 0;
         String[] colunas = {"TURNO", "HORAS", "HORAS PERCORRIDAS", "DATA"};
@@ -246,9 +285,11 @@ public class intuUsuario extends javax.swing.JFrame {
         // Criação da tabela usando o modelo
         JTable tabela = new JTable(model);
 
-        // Criação dos botões "inicio" e "termino"
+        // Criação dos botões "inicio", "termino", "mostrarSoma" e "salvar"
         JButton inicioButton = new JButton("Início");
         JButton terminoButton = new JButton("Término");
+        JButton mostrarSomaButton = new JButton("Fim do Expediente");
+        JButton salvarButton = new JButton("Salvar");
 
         // Configuração do layout do painel
         JPanel panel = new JPanel(new BorderLayout());
@@ -257,6 +298,8 @@ public class intuUsuario extends javax.swing.JFrame {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.add(inicioButton);
         buttonPanel.add(terminoButton);
+        buttonPanel.add(mostrarSomaButton);
+        buttonPanel.add(salvarButton);
 
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
@@ -271,6 +314,83 @@ public class intuUsuario extends javax.swing.JFrame {
         Cronometro cronometro = new Cronometro(model);
         inicioButton.addActionListener(e -> cronometro.iniciarCronometro());
         terminoButton.addActionListener(e -> cronometro.pararCronometro());
+        mostrarSomaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                long somaHoras = cronometro.getTotalHorasPercorridas();
+                long somaMinutos = cronometro.getTotalMinutosPercorridos();
+                long somaSegundos = cronometro.getTotalSegundosPercorridos();
+                System.out.println("Soma Horas: " + somaHoras);
+                System.out.println("Soma Minutos: " + somaMinutos);
+                System.out.println("Soma Segundos: " + somaSegundos);
+                JOptionPane.showMessageDialog(null, "Você fez! " + " Horas " + somaHoras + "," + " Minutos " + somaMinutos + "," + " Segundos " + somaSegundos + "  durante o seu expediente ");
+            }
+        });
+        salvarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                salvarDadosTabela(model);
+            }
+
+            private void salvarDadosTabela(DefaultTableModel model) {
+
+                String url = "jdbc:mysql://localhost:3306/projetobp?zeroDateTimeBehavior=convertToNull";
+                String user = "root";
+                String password = "";
+
+                try (Connection connection = DriverManager.getConnection(url, user, password)) {
+                    String nomeUsuario = JOptionPane.showInputDialog("Digite seu nome completo : ");
+                    int idUsuario = buscarIdUsuario(nomeUsuario, connection);
+                    if (idUsuario == -1) {
+                        JOptionPane.showMessageDialog(null, "Usuário não encontrado!");
+                        return;
+                    }
+
+                    for (int i = 0; i < model.getRowCount(); i++) {
+                        String horaTermino = (String) model.getValueAt(i, 1); // Coluna "HORAS PERCORRIDAS"
+                        String horasPercorridas = (String) model.getValueAt(i, 2); // Coluna "DATA"
+
+                        String sql = "INSERT INTO horas (id_usuario, nome, horas, horasPecorrida, datas) VALUES (?, ?, ?, ?, ?)";
+                        PreparedStatement statement = connection.prepareStatement(sql);
+                        statement.setInt(1, idUsuario);
+                        statement.setString(2, nomeUsuario);
+                        statement.setString(3, horaTermino);
+                        statement.setString(4, horasPercorridas);
+                        statement.setDate(5, new java.sql.Date(System.currentTimeMillis()));
+
+                        statement.executeUpdate();
+                        statement.close();
+                    }
+
+                    System.out.println("Dados salvos no banco de dados com sucesso!");
+                } catch (SQLException e) {
+                    System.out.println("Erro ao salvar os dados no banco de dados: " + e.getMessage());
+                }
+
+            }
+
+            private int buscarIdUsuario(String nomeUsuario, Connection connection) {
+                int idUsuario = -1;
+
+                try {
+                    String sql = "SELECT id_usuario FROM usuario WHERE nome = ?";
+                    PreparedStatement statement = connection.prepareStatement(sql);
+                    statement.setString(1, nomeUsuario);
+                    ResultSet resultSet = statement.executeQuery();
+
+                    if (resultSet.next()) {
+                        idUsuario = resultSet.getInt("id_usuario");
+                    }
+
+                    resultSet.close();
+                    statement.close();
+                } catch (SQLException e) {
+                    System.out.println("Erro ao buscar o id do usuário: " + e.getMessage());
+                }
+
+                return idUsuario;
+            }
+        });
 
 
     }//GEN-LAST:event_expedienteActionPerformed
@@ -280,14 +400,129 @@ public class intuUsuario extends javax.swing.JFrame {
         new SUPORTE().setVisible(true);
     }//GEN-LAST:event_jRadioButtonMenuItem4ActionPerformed
 
-    private void modelotabelaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_modelotabelaAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modelotabelaAncestorAdded
-
-    private void IntNomeUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IntNomeUsuActionPerformed
+    private void txtnomeUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomeUsuActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_IntNomeUsuActionPerformed
+        Connection conexao = null;
+        try {
+            conexao = new dao.Conexao().getConnection();
+
+            // Criar uma consulta SQL
+            String sql = "SELECT nome FROM usuario";
+
+            // Executar a consulta
+            Statement statement = conexao.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            // Processar os resultados
+            while (resultSet.next()) {
+                String nome = resultSet.getString("nome");
+                // Faça o que quiser com o nome retornado do banco de dados
+                txtnomeUsu.setText(nome);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Fechar a conexão com o banco de dados
+            try {
+                if (conexao != null) {
+                    conexao.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_txtnomeUsuActionPerformed
+
+    private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
+        // TODO add your handling code here:
+        String identificadorUnico = txtID.getText();
+        String data = mestxt.getText().trim(); // Remover espaços em branco
+
+        Connection conexao;
+        try {
+            conexao = new dao.Conexao().getConnection();
+
+            String query = "SELECT u.nome, h.horas, h.horaspecorrida, h.datas "
+                    + "FROM usuario u "
+                    + "INNER JOIN horas h ON u.id_usuario = h.id_usuario "
+                    + "WHERE u.IndentificadoUnico = ? ";
+
+            // Verifica se o campo de texto para a hora não está vazio
+            /*if (!hora.isEmpty()) {
+             query += "AND h.horas = ? ";
+             }*/
+            // Verifica se o campo de texto para o data não está vazio e é um número válido
+            if (!data.isEmpty()) {
+                try {
+                    int mes = Integer.parseInt(data);
+                    query += "AND MONTH(h.datas) = ? ";
+                } catch (NumberFormatException e) {
+                    // Tratar caso o valor do campo data não seja um número válido
+                    // Aqui você pode exibir uma mensagem de erro ou tomar alguma outra ação adequada
+                    System.out.println("O valor do campo data não é um número válido.");
+                    return;
+                }
+            }
+
+            PreparedStatement preparedStatement = conexao.prepareStatement(query);
+            preparedStatement.setString(1, identificadorUnico);
+
+            // Preenche os parâmetros adicionais se os campos correspondentes forem preenchidos
+            int parameterIndex = 2; // Índice dos parâmetros adicionais na query
+
+            /*if (!hora.isEmpty()) {
+             preparedStatement.setString(parameterIndex, hora);
+             parameterIndex++;
+             }*/
+            if (!data.isEmpty()) {
+                int mes = Integer.parseInt(data);
+                preparedStatement.setInt(parameterIndex, mes);
+            }
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            boolean encontrouDados = false;
+
+            while (resultSet.next()) {
+                String nome = resultSet.getString("nome");
+                String horas = resultSet.getString("horas");
+                String horasPercorrida = resultSet.getString("horaspecorrida");
+                String dataHora = resultSet.getString("datas");
+
+                resultado.append("Nome: " + nome + "\n");
+                resultado.append("Horas: " + horas + "\n");
+                resultado.append("Horas Percorridas: " + horasPercorrida + "\n");
+                resultado.append("Data: " + dataHora + "\n");
+                resultado.append("\n");
+
+                encontrouDados = true;
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+            conexao.close();
+
+            if (!encontrouDados) {
+                resultado.setText("Nenhum dado encontrado para a busca realizada.");
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Não foi possível realizar a consulta!");
+            ex.printStackTrace();
+        }
+        txtID.setText("");
+        mestxt.setText(" ");
+
+    }//GEN-LAST:event_consultarActionPerformed
+
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        // TODO add your handling code here:
+        txtID.setText("");
+        mestxt.setText(" ");
+        resultado.setText("");
+    }//GEN-LAST:event_cancelarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -328,22 +563,26 @@ public class intuUsuario extends javax.swing.JFrame {
     }
 
     public JTextField getIntNomeUsu() {
-        return IntNomeUsu;
+        return txtnomeUsu;
     }
 
     public void setIntNomeUsu(JTextField IntNomeUsu) {
-        this.IntNomeUsu = IntNomeUsu;
+        this.txtnomeUsu = IntNomeUsu;
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField IntNomeUsu;
+    private javax.swing.JButton cancelar;
+    private javax.swing.JButton consultar;
     private javax.swing.JButton expediente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     public static javax.swing.JPanel jPanel1;
@@ -354,6 +593,9 @@ public class intuUsuario extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTable modelotabela;
+    private javax.swing.JTextField mestxt;
+    private javax.swing.JTextArea resultado;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtnomeUsu;
     // End of variables declaration//GEN-END:variables
 }

@@ -66,6 +66,7 @@ public class intADM extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
@@ -111,6 +112,12 @@ public class intADM extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel10.setText("Horas pecorrida :");
+
+        txtHorasPercorridas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHorasPercorridasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -192,6 +199,16 @@ public class intADM extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/menu 1.png"))); // NOI18N
         jMenu1.setText("Menu");
         jMenu1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+
+        jMenuItem2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/calcu.png"))); // NOI18N
+        jMenuItem2.setText("Calcular Horas e Valor");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
 
         jRadioButtonMenuItem1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem1.setSelected(true);
@@ -378,6 +395,15 @@ public class intADM extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void txtHorasPercorridasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHorasPercorridasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHorasPercorridasActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        new Calcular().setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -429,6 +455,7 @@ public class intADM extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
