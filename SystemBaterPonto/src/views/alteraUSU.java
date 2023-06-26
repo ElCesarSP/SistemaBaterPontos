@@ -50,6 +50,7 @@ public class alteraUSU extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -119,6 +120,11 @@ public class alteraUSU extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2);
         jButton2.setBounds(130, 350, 100, 30);
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel8.setText("Funcionário");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(140, 20, 90, 15);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (1).png"))); // NOI18N
         jLabel6.setText("img");
@@ -297,6 +303,7 @@ public class alteraUSU extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;

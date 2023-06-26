@@ -71,7 +71,7 @@ public class DeletUsuAdm extends javax.swing.JFrame {
 
         Titulo.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         Titulo.setText("Administrador");
-        jPanel2.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
+        jPanel2.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

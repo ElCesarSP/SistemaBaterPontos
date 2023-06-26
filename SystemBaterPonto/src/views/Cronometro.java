@@ -1,12 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author César
- */
 package views;
 
 import javax.swing.JButton;
@@ -95,9 +86,18 @@ public class Cronometro {
         Date agora = new Date();
         long segundosDecorridos = (agora.getTime() - horaInicio.getTime()) / 1000;
 
-        String tempoDecorrido = formatarTempo(segundosDecorridos);
+        long horasPercorridas = segundosDecorridos / 3600;
+        segundosDecorridos %= 3600;
+        long minutosPercorridos = segundosDecorridos / 60;
+        segundosDecorridos %= 60;
+
+        String tempoDecorrido = String.format("%02d:%02d:%02d", horasPercorridas, minutosPercorridos, segundosDecorridos);
 
         model.setValueAt(tempoDecorrido, linha, 2); // Coluna "HORAS PERCORRIDAS"
+
+        totalHorasPercorridas += horasPercorridas;
+        totalMinutosPercorridos += minutosPercorridos;
+        totalSegundosPercorridos += segundosDecorridos;
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String dataAtual = dateFormat.format(agora);
