@@ -1,3 +1,4 @@
+
 " Bem-vindo ao Sistema Bater Pontos: Simplificando o Registro de Horário! "
 
 Apresentando o SistemaBaterPontos: Gerenciamento Eficiente de Registro de Ponto
@@ -30,3 +31,16 @@ oferece aos usuários uma experiência de uso eficiente e intuitiva.
 SistemaBaterPontos: simplificando o registro de ponto, promovendo a transparência e aumentando a produtividade. Descubra o poder
 do gerenciamento de tempo com o nosso sistema avançado.
 
+![login](https://github.com/ElCesarSP/SistemaBaterPontos/assets/132622537/1dbacff6-6626-41bc-b1f0-6bea644006ac)
+![Uploading funcinário.png…]()
+![Uploading deletar usuario ADM.png…]()
+![CalculadorADM](https://github.com/ElCesarSP/SistemaBaterPontos/assets/132622537/478e759c-1505-4fa4-a3e3-eba3e0755c01)
+![Uploading Cadastro ADM.png…]()
+![Uploading AlteraCadastroUsuario.png…]()
+![Uploading AlteraCadastroADM.png…]()
+![Uploading Ajuda.png…]()
+![Uploading administrador.png…]()
+![Uploading Termos privacidade.png…]()
+![Uploading Suporte.png…]()
+![Uploading Sobre.png…]()
+![Uploading Informacao geral.png…]()
