@@ -2,6 +2,7 @@
 
 Apresentando o SistemaBaterPontos: Gerenciamento Eficiente de Registro de Ponto
 
+
 O SistemaBaterPontos é uma solução inovadora desenvolvida a partir do zero, com aprimoramentos e novas aplicações para simplificar e
 otimizar o processo de registro de ponto. Com uma interface intuitiva e recursos avançados, o sistema oferece diferentes telas para 
 atender às necessidades dos usuários: usuário administrador, usuário comum e telas de usuário do expediente, informações e suporte.
