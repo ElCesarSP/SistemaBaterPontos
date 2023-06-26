@@ -34,7 +34,7 @@ do gerenciamento de tempo com o nosso sistema avançado.
 ![login](https://github.com/ElCesarSP/SistemaBaterPontos/assets/132622537/1dbacff6-6626-41bc-b1f0-6bea644006ac)
 ![funcinário](https://github.com/ElCesarSP/SistemaBaterPontos/assets/132622537/9a03c95d-4a8c-4a8a-8248-6fd89d6ed944)!
 ![cronometros](https://github.com/ElCesarSP/SistemaBaterPontos/assets/132622537/ec6169d4-22b8-44e3-8e36-a54537119787)
-[AlteraCadastroUsuario](https://github.com/ElCesarSP/SistemaBaterPontos/assets/132622537/84defa46-f61d-4d05-9eb6-e1cc2ffb9c7c)
+![AlteraCadastroUsuario](https://github.com/ElCesarSP/SistemaBaterPontos/assets/132622537/84defa46-f61d-4d05-9eb6-e1cc2ffb9c7c)
 ![Informacao geral](https://github.com/ElCesarSP/SistemaBaterPontos/assets/132622537/7abff00a-4bd7-413f-8ac3-1752c8844aa7)
 ![Termos privacidade](https://github.com/ElCesarSP/SistemaBaterPontos/assets/132622537/15dac474-cdb3-4743-824d-19ed7038ded9)
 ![Suporte](https://github.com/ElCesarSP/SistemaBaterPontos/assets/132622537/d1f3e353-ef11-4a9d-b0f5-62f0a26bf612)
