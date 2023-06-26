@@ -1,5 +1,6 @@
 package dao;
 
+import Horario.Horas;
 import cadastro.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import views.cadastro;
@@ -20,24 +22,25 @@ public class UsuarioDAO {
         this.connection = connection;
     }
 
-    /*public Usuario insert(Usuario usuario) throws SQLException {
+    public Usuario insert2(Usuario usuario) throws SQLException {
 
-     String sql = "INSERT INTO usuario(usuarios,senha)   VALUES (? ,?); ";
-     PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        String sql = "INSERT INTO usuario(usuarios,senha)   VALUES (? ,?); ";
+        PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-     statement.setString(1, usuario.getUsuarios());
-     statement.setString(2, usuario.getSenha());
-     statement.execute();
-        
-     ResultSet resultSet = statement.getGeneratedKeys();
-        
-     if (resultSet.next()){
-     int id = resultSet.getInt("id");
-     usuario.setId(id);
-     }
-     return usuario;
-        
-     }*/
+        statement.setString(1, usuario.getUsuarios());
+        statement.setString(2, usuario.getSenha());
+        statement.execute();
+
+        ResultSet resultSet = statement.getGeneratedKeys();
+
+        if (resultSet.next()) {
+            int id_usuario = resultSet.getInt("id_usuario");
+            usuario.setId(id_usuario);
+        }
+        return usuario;
+
+    }
+
     public void insert(Usuario usuario) throws SQLException {
 
         String sql = "INSERT INTO usuario (nome, usuarios, senha, cpf, rg, cargo, dataNascimento, IndentificadoUnico, telefone, estado, cidade, bairro, rua, referencia, complemento, numero, cep) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -92,7 +95,6 @@ public class UsuarioDAO {
     }
 
     public void update(Usuario usuario) throws SQLException {
-
         String sql = "UPDATE usuario SET senha = ? WHERE usuarios = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -103,7 +105,7 @@ public class UsuarioDAO {
     }
 
     public void updateUsuarios(Usuario usuario) throws SQLException {
-        String sql = "UPDATE usuario SET senha = ?, telefone = ?, cargo = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?, cep = ? WHERE id = ?";
+        String sql = "UPDATE usuario SET senha = ?, telefone = ?, cargo = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ?, cep = ? WHERE id_usuario = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
 
         statement.setString(1, usuario.getSenha());
@@ -130,7 +132,7 @@ public class UsuarioDAO {
     }
 
     public void delete(Usuario usuario) throws SQLException {
-        String sql = "DELETE FROM usuario WHERE id = ?";
+        String sql = "DELETE FROM usuario WHERE id_usuario = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, usuario.getId());
@@ -208,7 +210,7 @@ public class UsuarioDAO {
         ResultSet resultSet = statement.executeQuery();
 
         if (resultSet.next()) {
-            int id = resultSet.getInt("id");
+            int id = resultSet.getInt("id_usuario");
             String nome = resultSet.getString("nome");
             String senha = resultSet.getString("senha");
             String cpf = resultSet.getString("cpf");
@@ -232,12 +234,64 @@ public class UsuarioDAO {
         return null;
     }
 
-    public Usuario SelecAll(String BuscaOnome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Usuario Consulta(String usuario) throws SQLException {
+
+        String sql = "SELECT * FROM usuario WHERE nomes = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+
+        statement.setString(1, usuario);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()) {
+            String nome = resultSet.getString("nome");
+
+            return new Usuario(nome);
+        }
+        return null;
     }
 
-    public String buscarNomeUsuario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //Teste
+    public List<Horas> buscarHorasPorIdentificadorUnico(String identificadorUnico, String data) {
+        List<Horas> horasList = new ArrayList<>();
+
+        try {
+            String query = "SELECT u.nome, h.horas, h.horaspecorrida, h.datas "
+                    + "FROM usuario u "
+                    + "INNER JOIN horas h ON u.id_usuario = h.id_usuario "
+                    + "WHERE u.IndentificadorUnico = ? ";
+
+            // Verifica se o campo de texto para o mês não está vazio
+            if (data != null && !data.isEmpty()) {
+                int mes = Integer.parseInt(data);
+                query += "AND MONTH(h.datas) = " + mes + " ";
+            }
+
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, identificadorUnico);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String nome = resultSet.getString("nome");
+                String horas = resultSet.getString("horas");
+                String horasPercorrida = resultSet.getString("horaspecorrida");
+                String dataHora = resultSet.getString("datas");
+
+                Horas horasObj = new Horas(nome, horas, horasPercorrida, dataHora);
+                horasList.add(horasObj);
+            }
+
+            resultSet.close();
+            preparedStatement.close();
+
+        } catch (SQLException ex) {
+            System.out.println("Não foi possível realizar a consulta!");
+            ex.printStackTrace();
+        }
+
+        return horasList;
     }
 
+    // Outros métodos da classe...
 }
