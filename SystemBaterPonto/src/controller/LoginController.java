@@ -65,7 +65,7 @@ public class LoginController {
             new intuUsuario().setVisible(true);
             
         } else {
-            JOptionPane.showMessageDialog(null, "Usuario o senha Invalidos");
+            JOptionPane.showMessageDialog(null, "Usuario ou senha Invalidos");
         }
         
         
