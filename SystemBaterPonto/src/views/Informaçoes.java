@@ -71,6 +71,7 @@ public class Informaçoes extends javax.swing.JFrame {
         jLabel5.setText("Cadastro de usuário:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, 20));
 
+        jTextPane1.setEditable(false);
         jTextPane1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextPane1.setText("O sistema deve permitir que os funcionários se cadastrem fornecendo informações básicas, como nome, endereço de e-mail, senha, número de identificação ou matrícula, departamento, cargo, etc.");
         jTextPane1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
@@ -86,6 +87,7 @@ public class Informaçoes extends javax.swing.JFrame {
         jLabel6.setText("Login:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
 
+        jTextPane2.setEditable(false);
         jTextPane2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextPane2.setText("Os usuários registrados devem poder fazer login no sistema utilizando seu nome de usuário (ou endereço de e-mail) e senha. O login garante que apenas usuários autorizados possam acessar as funcionalidades do sistema.");
         jScrollPane2.setViewportView(jTextPane2);
@@ -96,6 +98,7 @@ public class Informaçoes extends javax.swing.JFrame {
         jLabel7.setText("Contagem de horas:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
 
+        jTextPane3.setEditable(false);
         jTextPane3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextPane3.setText("O sistema deve calcular o tempo trabalhado com base nos registros de entrada e saída de cada funcionário. Ele pode calcular o total de horas trabalhadas em um dia, semana ou mês, incluindo horas extras, se necessário.");
         jScrollPane3.setViewportView(jTextPane3);
@@ -106,6 +109,7 @@ public class Informaçoes extends javax.swing.JFrame {
         jLabel8.setText("Gerenciamento de dados:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, -1, 10));
 
+        jTextPane5.setEditable(false);
         jTextPane5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextPane5.setText(" O sistema deve armazenar os registros de ponto de cada funcionário de forma segura e organizada. Os dados devem ser facilmente acessíveis e permitir a geração de relatórios para análise posterior.");
         jScrollPane5.setViewportView(jTextPane5);
@@ -116,6 +120,7 @@ public class Informaçoes extends javax.swing.JFrame {
         jLabel9.setText("Registro de ponto:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, -1, -1));
 
+        jTextPane4.setEditable(false);
         jTextPane4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextPane4.setText("O sistema deve permitir que os funcionários registrem seus pontos de entrada e saída. Isso pode ser feito de diferentes maneiras, como por meio de um relógio de ponto físico, um aplicativo móvel ou até mesmo um site acessível em um computador.");
         jScrollPane4.setViewportView(jTextPane4);
@@ -126,6 +131,7 @@ public class Informaçoes extends javax.swing.JFrame {
         jLabel10.setText("Usuário administrador:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, -1, -1));
 
+        jTextPane6.setEditable(false);
         jTextPane6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jTextPane6.setText("O sistema deve ter um tipo especial de usuário chamado \"administrador\". O administrador tem privilégios adicionais em relação aos usuários comuns, como acesso a configurações, gerenciamento de funcionários, geração de relatórios e outras tarefas administrativas.");
         jScrollPane6.setViewportView(jTextPane6);

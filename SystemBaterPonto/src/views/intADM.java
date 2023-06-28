@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static jdk.nashorn.internal.runtime.Debug.id;
 
@@ -90,6 +91,8 @@ public class intADM extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel2.setText("ID :");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, 23));
+
+        jTextField2.setEditable(false);
         jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 142, 220, 40));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
@@ -104,6 +107,7 @@ public class intADM extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel7.setText("Resultado no Campo de Busca :");
 
+        resultado.setEditable(false);
         resultado.setColumns(20);
         resultado.setRows(5);
         jScrollPane1.setViewportView(resultado);
@@ -182,7 +186,19 @@ public class intADM extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 260, 110, -1));
+
+        jTextField3.setEditable(false);
+        jTextField3.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField3.setText("Administador");
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 220, 40));
+
+        jTextField1.setEditable(false);
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 220, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
@@ -298,7 +314,9 @@ public class intADM extends javax.swing.JFrame {
 
     private void jRadioButtonMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem2ActionPerformed
         // TODO add your handling code here:
+        new longin().setVisible(true);
         this.dispose();
+        JOptionPane.showMessageDialog(null, "Fim da operação! ");
     }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -315,7 +333,7 @@ public class intADM extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         txtnomes.setText("");
-        
+
         txtMes.setText("");
         txtHorasPercorridas.setText("");
         resultado.setText("");
@@ -346,10 +364,10 @@ public class intADM extends javax.swing.JFrame {
             conexao = new dao.Conexao().getConnection();
             Statement statement = conexao.createStatement();
 
-            String query = "SELECT h.horas, h.horaspecorrida, h.datas "
+            String query = "SELECT h.horas, h.horaspecorrida, h.datas, u.nome "
                     + "FROM usuario u "
                     + "INNER JOIN horas h ON u.id_usuario = h.id_usuario "
-                    + "WHERE u.nome = ? ";
+                    + "WHERE u.nome LIKE ? ";
 
             // Verifica se o campo de texto para o mês não está vazio
             if (!mesTexto.isEmpty()) {
@@ -359,26 +377,27 @@ public class intADM extends javax.swing.JFrame {
 
             // Verifica se o campo de texto para a data não está vazio
             /*if (!dataTexto.isEmpty()) {
-                query += "AND h.datas = '" + dataTexto + "' ";
-            }*/
-
+             query += "AND h.datas = '" + dataTexto + "' ";
+             }*/
             // Verifica se o campo de texto para as horas percorridas não está vazio
             if (!horasPercorridasTexto.isEmpty()) {
                 query += "AND h.horaspecorrida = '" + horasPercorridasTexto + "' ";
             }
 
             PreparedStatement preparedStatement = conexao.prepareStatement(query);
-            preparedStatement.setString(1, buscarNome);
+            preparedStatement.setString(1, "%" + buscarNome + "%"); // Usando o operador % para buscar nomes que contenham o valor digitado
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             boolean encontrouDados = false;
 
             while (resultSet.next()) {
+                String nome = resultSet.getString("nome");
                 String horas = resultSet.getString("horas");
                 String horasPercorrida = resultSet.getString("horaspecorrida");
                 String data = resultSet.getString("datas");
 
+                resultado.append("Nome: " + nome + "\n");
                 resultado.append("Horas: " + horas + "\n");
                 resultado.append("Horas Percorridas: " + horasPercorrida + "\n");
                 resultado.append("Datas: " + data + "\n");
@@ -409,6 +428,10 @@ public class intADM extends javax.swing.JFrame {
         // TODO add your handling code here:
         new Calcular().setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments

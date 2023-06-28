@@ -5,9 +5,11 @@
  */
 package views;
 
+import cadastro.Usuario;
 import com.sun.java.swing.plaf.windows.WindowsBorders;
-import controller.LoginController;
+import dao.Conexao;
 import dao.UsuarioDAO;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,15 +23,12 @@ import javax.swing.JTextField;
  */
 public class longin extends javax.swing.JFrame {
 
-    private final LoginController controller;
-    private boolean LoginController;
-
     /**
      * Creates new form longin
      */
     public longin() {
         initComponents();
-        controller = new LoginController(this);
+
     }
 
     /**
@@ -134,20 +133,53 @@ public class longin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      
+
+        String usuarios = txtUsu.getText();
+        String senha = PassSenh.getText();
+
+        //Buscar o usuário da views
+        //Interface usuário        
+        Usuario autenticarUsuario = new Usuario(usuarios, senha);
+        //Verificar se existe no banco de dados
+        Connection conexao;
         try {
-            controller.autenticar();
-            txtUsu.setText("");
-            PassSenh.setText("");
-            
+            conexao = new Conexao().getConnection();
+            UsuarioDAO usuarioDAO = new UsuarioDAO(conexao);
+            boolean existe = usuarioDAO.autenticarUsuario(autenticarUsuario);
+
+            String Usuar = null;
+            String Senh = null;
+
+            if (existe) {
+                Usuar = usuarios;
+                Senh = senha;
+            }
+            /*Aqui estou usando regras de negocio para poder somentes usuario do projeto poder realizar
+             Por padrão futuramento vamos modelar no banco de dados como seria somente usuarios
+             cadastrado que poder realizar a tela de cadastro e implementar mais novos cadastro de adm
+             */
+            if (usuarios.equals("admin") && senha.equals("admin")
+                    || usuarios.equals("cesar") && senha.equals("cesar")
+                    || usuarios.equals("rauny") && senha.equals("rauny01")
+                    || usuarios.equals("alex") && senha.equals("alex01")
+                    || usuarios.equals("rafael") && senha.equals("rafael")
+                    || usuarios.equals("pedro") && senha.equals("pedro")
+                    || usuarios.equals("esdras") && senha.equals("esdras")) {
+
+                new intADM().setVisible(true);
+                JOptionPane.showMessageDialog(null, "Bem-vindo ao nosso Sistema! ");
+                this.dispose();
+            } else if (existe) {
+                intuUsuario telaDeUsuarioComun = new intuUsuario();
+                new intuUsuario().setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario o senha Invalidos");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(longin.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (CloneNotSupportedException ex) {
-            Logger.getLogger(longin.class.getName()).log(Level.SEVERE, null, ex);
-            
         }
-        
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioButtonMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem2ActionPerformed
@@ -179,16 +211,21 @@ public class longin extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(longin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(longin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(longin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(longin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(longin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(longin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(longin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(longin.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -198,6 +235,11 @@ public class longin extends javax.swing.JFrame {
                 new longin().setVisible(true);
             }
         });
+    }
+
+    public longin(JPasswordField PassSenh, JTextField txtUsu) {
+        this.PassSenh = PassSenh;
+        this.txtUsu = txtUsu;
     }
 
     public JPasswordField getPassSenh() {
@@ -216,7 +258,8 @@ public class longin extends javax.swing.JFrame {
         this.txtUsu = txtUsu;
     }
 
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField PassSenh;
     private javax.swing.JButton jButton1;

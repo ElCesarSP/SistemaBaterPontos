@@ -21,6 +21,8 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -31,6 +33,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
+import views.intuUsuario;
 
 /**
  *
@@ -42,6 +45,7 @@ public class intuUsuario extends javax.swing.JFrame {
     private LocalDateTime startTime;
     private Relogio relogio;
     private JTable tabela;
+    private longin dadosLogin;
 
     /**
      * Creates new form intuUsuario
@@ -63,7 +67,7 @@ public class intuUsuario extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtind = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -74,11 +78,14 @@ public class intuUsuario extends javax.swing.JFrame {
         mestxt = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtcargo = new javax.swing.JTextField();
         expediente = new javax.swing.JButton();
-        txtnomeUsu = new javax.swing.JTextField();
+        txtnome = new javax.swing.JTextField();
         consultar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
+        vericar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        txtaddind = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -97,12 +104,14 @@ public class intuUsuario extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel1.setText("Nome :");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 210, 40));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        txtind.setEditable(false);
+        jPanel1.add(txtind, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 210, 30));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel3.setText("Identificador Único :");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         jPanel2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
 
@@ -118,6 +127,7 @@ public class intuUsuario extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel7.setText("Resultado da Consulta :");
 
+        resultado.setEditable(false);
         resultado.setColumns(20);
         resultado.setRows(5);
         jScrollPane1.setViewportView(resultado);
@@ -166,8 +176,10 @@ public class intuUsuario extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel4.setText("Cargo :");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 210, 40));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+
+        txtcargo.setEditable(false);
+        jPanel1.add(txtcargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 210, 30));
 
         expediente.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         expediente.setText("Expediente");
@@ -176,14 +188,15 @@ public class intuUsuario extends javax.swing.JFrame {
                 expedienteActionPerformed(evt);
             }
         });
-        jPanel1.add(expediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 140, 40));
+        jPanel1.add(expediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 140, 30));
 
-        txtnomeUsu.addActionListener(new java.awt.event.ActionListener() {
+        txtnome.setEditable(false);
+        txtnome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnomeUsuActionPerformed(evt);
+                txtnomeActionPerformed(evt);
             }
         });
-        jPanel1.add(txtnomeUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 210, 40));
+        jPanel1.add(txtnome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 210, 30));
 
         consultar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         consultar.setText("Consultar");
@@ -192,7 +205,7 @@ public class intuUsuario extends javax.swing.JFrame {
                 consultarActionPerformed(evt);
             }
         });
-        jPanel1.add(consultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 260, 120, 40));
+        jPanel1.add(consultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, 120, 30));
 
         cancelar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         cancelar.setText("Cancelar");
@@ -201,7 +214,21 @@ public class intuUsuario extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, 100, 40));
+        jPanel1.add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 100, 30));
+
+        vericar.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        vericar.setText("Verificação");
+        vericar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vericarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(vericar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 130, 30));
+
+        jLabel10.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jLabel10.setText("Informe Indenticador :");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        jPanel1.add(txtaddind, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 120, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
         jLabel5.setText("imagem");
@@ -220,6 +247,11 @@ public class intuUsuario extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/inco/menu 1.png"))); // NOI18N
         jMenu1.setText("Menu");
         jMenu1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
 
         jRadioButtonMenuItem1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
         jRadioButtonMenuItem1.setSelected(true);
@@ -264,7 +296,9 @@ public class intuUsuario extends javax.swing.JFrame {
 
     private void jRadioButtonMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem3ActionPerformed
         // TODO add your handling code here:
+        new longin().setVisible(true);
         this.dispose();
+        JOptionPane.showMessageDialog(null, "Fim da operação! ");
     }//GEN-LAST:event_jRadioButtonMenuItem3ActionPerformed
 
     private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
@@ -405,39 +439,9 @@ public class intuUsuario extends javax.swing.JFrame {
         new SUPORTE().setVisible(true);
     }//GEN-LAST:event_jRadioButtonMenuItem4ActionPerformed
 
-    private void txtnomeUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomeUsuActionPerformed
-        // TODO add your handling code here:
-
-        Connection conexao = null;
-        try {
-            conexao = new dao.Conexao().getConnection();
-
-            // Criar uma consulta SQL
-            String sql = "SELECT nome FROM usuario";
-
-            // Executar a consulta
-            Statement statement = conexao.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-
-            // Processar os resultados
-            while (resultSet.next()) {
-                String nome = resultSet.getString("nome");
-                // Faça o que quiser com o nome retornado do banco de dados
-                txtnomeUsu.setText(nome);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Fechar a conexão com o banco de dados
-            try {
-                if (conexao != null) {
-                    conexao.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }//GEN-LAST:event_txtnomeUsuActionPerformed
+    private void txtnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomeActionPerformed
+        // TODO add your handling code here:  
+    }//GEN-LAST:event_txtnomeActionPerformed
 
     private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
         // TODO add your handling code here:
@@ -529,6 +533,71 @@ public class intuUsuario extends javax.swing.JFrame {
         resultado.setText("");
     }//GEN-LAST:event_cancelarActionPerformed
 
+    private void vericarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vericarActionPerformed
+        // TODO add your handling code here:
+        // Configurando as informações de conexão com o banco de dados
+// Recupere o número de identificação fornecido
+        String numeroIdentificacao = txtaddind.getText();
+
+// Estabeleça uma conexão com o banco de dados
+        Connection conn = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/projetobp?zeroDateTimeBehavior=convertToNull", "root", "");
+
+            // Execute a consulta no banco de dados
+            String query = "SELECT nome, IndentificadoUnico, cargo FROM usuario WHERE IndentificadoUnico = ?";
+            statement = conn.prepareStatement(query);
+            statement.setString(1, numeroIdentificacao);
+
+            // Execute a consulta e obtenha os resultados
+            rs = statement.executeQuery();
+
+            // Verifique se algum resultado foi retornado
+            if (rs.next()) {
+                // Recupere os valores dos campos do resultado da consulta
+                String nome = rs.getString("nome");
+                String identificadorUnico = rs.getString("IndentificadoUnico");
+                String cargo = rs.getString("cargo");
+
+                // Exiba os valores nos campos de texto correspondentes
+                txtnome.setText(nome);
+                txtind.setText(identificadorUnico);
+                txtcargo.setText(cargo);
+            } else {
+                // Caso nenhum resultado seja retornado, limpe os campos de texto
+                txtnome.setText("");
+                txtaddind.setText("");
+                txtcargo.setText("");
+            }
+        } catch (SQLException e) {
+            // Lida com exceções de SQL, se ocorrerem
+            e.printStackTrace();
+        } finally {
+            // Feche a conexão com o banco de dados e libere os recursos
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        txtaddind.setText("");
+    }//GEN-LAST:event_vericarActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -568,11 +637,11 @@ public class intuUsuario extends javax.swing.JFrame {
     }
 
     public JTextField getIntNomeUsu() {
-        return txtnomeUsu;
+        return txtnome;
     }
 
     public void setIntNomeUsu(JTextField IntNomeUsu) {
-        this.txtnomeUsu = IntNomeUsu;
+        this.txtnome = IntNomeUsu;
     }
 
 
@@ -581,6 +650,7 @@ public class intuUsuario extends javax.swing.JFrame {
     private javax.swing.JButton consultar;
     private javax.swing.JButton expediente;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -597,11 +667,13 @@ public class intuUsuario extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField mestxt;
     private javax.swing.JTextArea resultado;
     private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtnomeUsu;
+    private javax.swing.JTextField txtaddind;
+    private javax.swing.JTextField txtcargo;
+    private javax.swing.JTextField txtind;
+    private javax.swing.JTextField txtnome;
+    private javax.swing.JButton vericar;
     // End of variables declaration//GEN-END:variables
 }

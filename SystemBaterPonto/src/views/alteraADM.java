@@ -147,10 +147,10 @@ public class alteraADM extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/Sistem Ponto (2).png"))); // NOI18N
         jLabel3.setText("img");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, 0, -1, 470));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 470));
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(70, 33, 650, 300);
+        jPanel1.setBounds(70, 33, 650, 320);
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
@@ -161,7 +161,7 @@ public class alteraADM extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(630, 350, 90, 30);
+        jButton3.setBounds(630, 360, 90, 30);
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
@@ -172,7 +172,7 @@ public class alteraADM extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(70, 350, 100, 30);
+        jButton2.setBounds(70, 360, 100, 30);
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel15.setText("Administrador ");

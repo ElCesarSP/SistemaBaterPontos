@@ -94,7 +94,8 @@ public class DeletUsuAdm extends javax.swing.JFrame {
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 194, -1, -1));
 
-        jTextField3.setFont(new java.awt.Font("Arial Black", 1, 13)); // NOI18N
+        jTextField3.setEditable(false);
+        jTextField3.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField3.setText(" Administrador");
         jTextField3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

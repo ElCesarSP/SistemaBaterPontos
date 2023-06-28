@@ -93,11 +93,13 @@ public class Cronometro {
 
         String tempoDecorrido = String.format("%02d:%02d:%02d", horasPercorridas, minutosPercorridos, segundosDecorridos);
 
+        
+        
         model.setValueAt(tempoDecorrido, linha, 2); // Coluna "HORAS PERCORRIDAS"
 
         totalHorasPercorridas += horasPercorridas;
-        totalMinutosPercorridos += minutosPercorridos;
-        totalSegundosPercorridos += segundosDecorridos;
+        totalMinutosPercorridos =+ minutosPercorridos;
+        totalSegundosPercorridos =+ segundosDecorridos;
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String dataAtual = dateFormat.format(agora);
